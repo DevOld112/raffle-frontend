@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps, inject } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+import type { Ticket as TicketTypes, Toast } from '../types/index';
+import { deleteTicket } from '@/api/TicketsAPI'
+
 
 
 interface Ticket {
+    _id: string
     raffleId: {
         _id: string;
     };
@@ -15,8 +20,42 @@ interface Ticket {
     paymentReference: string;
 }
 
-
+const toast = inject<Toast>('toast')!
+const route = useRoute()
+const router = useRouter()
 const props = defineProps<{ ticket: Ticket }>();
+const raffleId = route.params.id
+const ticketId = props.ticket._id
+
+const dataId = {
+    raffleId,
+    ticketId
+}
+
+const cancelTicket = async(dataId: { raffleId: string; ticketId: string }) => {
+    
+
+    try {
+
+        const result = confirm('¿Deseas Eliminar esta Rifa?')
+
+        if(result){
+            const data  = await deleteTicket(dataId)
+            toast?.open({
+                message: data || 'Ticket eliminado con éxito',
+                type: 'success'
+            })
+        }
+
+        setTimeout(() => {
+            router.push({name:'raffles'})
+        }, 1500);
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 </script>
@@ -100,7 +139,7 @@ const props = defineProps<{ ticket: Ticket }>();
                 </svg>
                 Aceptar
             </button>
-            <button class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">
+            <button @click="cancelTicket(dataId)" class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>

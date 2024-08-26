@@ -29,6 +29,7 @@ export const rafflesSchema = z.object({
 /** Tickets */
 
 export const ticketSchema = z.object({
+    _id: z.string(),
     raffleId: z.object({
         _id: z.string()
     }),
