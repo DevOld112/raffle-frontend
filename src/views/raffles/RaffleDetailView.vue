@@ -120,7 +120,3 @@ const goToTickets = () => {
 
     </div>
 </template>
-
-<style scoped>
-/* Puedes agregar estilos adicionales aquí si es necesario */
-</style>

@@ -10,10 +10,6 @@ onMounted(() => {
 });
 
 
-const handleViewDetails = (id) => {
-    //console.log('View details for raffle:', id);
-
-};
 
 </script>
 
@@ -26,7 +22,6 @@ const handleViewDetails = (id) => {
         v-for="raffle in store.raffles"
         :key="raffle.id"
         :raffle="raffle"
-        @viewDetails="handleViewDetails"
         />
     </div>
 

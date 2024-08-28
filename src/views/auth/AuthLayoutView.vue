@@ -1,5 +1,21 @@
 <script setup lang="ts">
 import { RouterView, useRoute } from 'vue-router';
+import AOS from 'aos'
+import { onMounted, onUpdated } from 'vue';
+
+AOS.init({
+    duration: 800,  
+    easing: 'ease-in-out',  
+    once: true,  
+})
+
+onMounted(() => {
+    AOS.refresh();
+});
+
+onUpdated(() => {
+    AOS.refresh();
+});
 
 const route = useRoute();
 
@@ -13,7 +29,10 @@ const authRoutes = [
 <template>
         <div class="mx-auto lg:w-4/5 mt-20">
 
-<RouterView />
+<RouterView
+    data-aos="fade-left"
+    data-aos-duration="500"
+/>
 
 <nav class="mt-10 flex flex-col items-center space-y-5 lg:flex-row lg:justify-between lg:space-y-0">
 

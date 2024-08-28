@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
 import type { RaffleCard  } from '@/types';
-import { useRoute, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 
 const router = useRouter()
 const props = defineProps<{ raffle: RaffleCard }>();
-const emit = defineEmits(['viewDetails']);
 
-const onViewDetails = () => {
 
-  router.push({ name: 'RaffleDetails', params: { id: props.raffle._id } });
+const onViewDetails = () => router.push({ name: 'RaffleDetails', params: { id: props.raffle._id } });
 
-  
-  emit('viewDetails', props.raffle._id);
-};
 
 </script>
 

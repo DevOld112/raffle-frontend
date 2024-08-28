@@ -11,17 +11,22 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@formkit/themes": "^1.2.2",
+    "@formkit/vue": "^1.2.2",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "aos": "^2.3.4",
+    "axios": "^1.5.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3",
     "vue-toast-notification": "^3.1.1",
-    "@formkit/themes": "^1.2.2",
-    "@formkit/vue": "^1.2.2",
-    "axios": "^1.5.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
+    "@types/aos": "^3.0.7",
     "@types/node": "^20.14.5",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/tsconfig": "^0.5.1",

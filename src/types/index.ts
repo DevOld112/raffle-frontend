@@ -61,6 +61,7 @@ export type RaffleCreation = Pick<Raffle, 'title' | 'description'| 'premiums' |'
 export type Ticket = z.infer<typeof ticketSchema>
 
 export type TicketByRaffle = string | string[];
+export type TicketCard = Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' | '_id'>
 
 
 export interface Toast {

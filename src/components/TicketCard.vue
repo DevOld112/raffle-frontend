@@ -1,31 +1,19 @@
 <script setup lang="ts">
 import { defineProps, inject } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
-import type { Ticket as TicketTypes, Toast } from '../types/index';
+import type { Ticket as TicketTypes, Toast, TicketCard } from '../types/index';
 import { deleteTicket } from '@/api/TicketsAPI'
 
 
 
-interface Ticket {
-    _id: string
-    raffleId: {
-        _id: string;
-    };
-    document: string;
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-    quantity: number; 
-    paymentReference: string;
-}
 
 const toast = inject<Toast>('toast')!
 const route = useRoute()
 const router = useRouter()
-const props = defineProps<{ ticket: Ticket }>();
-const raffleId = route.params.id
-const ticketId = props.ticket._id
+const props = defineProps<{ ticket: TicketCard }>();
+const raffleId = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id;
+const ticketId = String(props.ticket._id);
+
 
 const dataId = {
     raffleId,
@@ -34,11 +22,8 @@ const dataId = {
 
 const cancelTicket = async(dataId: { raffleId: string; ticketId: string }) => {
     
-
     try {
-
         const result = confirm('¿Deseas Eliminar esta Rifa?')
-
         if(result){
             const data  = await deleteTicket(dataId)
             toast?.open({

@@ -1,37 +1,13 @@
 <script setup lang="ts">
 import type { UserLoginForm, Toast } from '@/types';
 import { FormKit } from '@formkit/vue';
-import { loginUser } from '@/api/AuthAPI';
-import { inject } from 'vue';
-import { useRouter } from 'vue-router';
+import { sesionAuth } from '@/utils/auth'
 
 
+const sesion = sesionAuth()
 
-const router = useRouter()
-const toast = inject<Toast>('toast')!;
+const handleSubmit = async(formData: UserLoginForm) => sesion.login(formData)
 
-
-const handleSubmit = async(formData: UserLoginForm) => {
-    try {
-        const { data } = await loginUser(formData)
-
-        toast.open({
-            message: 'Credenciales Correctas',
-            type: 'success'
-        })
-
-        setTimeout(() => {
-            router.push({name: 'raffles'})
-        }, 2000)
-
-    } catch (error) {
-        toast.open({
-            message: 'Credenciales Invalidas',
-            type: 'error'
-        })
-        
-    }
-}
 
 </script>
 
@@ -71,8 +47,4 @@ const handleSubmit = async(formData: UserLoginForm) => {
         <FormKit type="submit">Iniciar Sesion</FormKit>
 
     </FormKit>
-    
-
-
-
 </template>
