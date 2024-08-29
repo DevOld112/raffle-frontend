@@ -3,11 +3,9 @@ import type { UserLoginForm, Toast } from '@/types';
 import { FormKit } from '@formkit/vue';
 import { sesionAuth } from '@/utils/auth'
 
-
 const sesion = sesionAuth()
 
 const handleSubmit = async(formData: UserLoginForm) => sesion.login(formData)
-
 
 </script>
 

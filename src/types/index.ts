@@ -64,6 +64,13 @@ export type TicketByRaffle = string | string[];
 export type TicketCard = Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' | '_id'>
 
 
+export interface RaffleByTicketId {
+    _id: string;
+    raffleId: string;
+    ticketId: string;
+  }
+
+
 export interface Toast {
     open(options: { message: string; type: 'success' | 'error' }): void;
 }

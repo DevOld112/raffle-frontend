@@ -42,6 +42,8 @@ const goBack = () => router.push({ name: 'raffles' });
         </div>
         
         <RouterView
+            data-aos="fade-left"
+            data-aos-duration="500"
         />
     </div>
 

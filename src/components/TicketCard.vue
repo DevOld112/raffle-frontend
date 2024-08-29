@@ -1,46 +1,26 @@
 <script setup lang="ts">
-import { defineProps, inject } from 'vue';
-import { useRoute, useRouter } from 'vue-router'
-import type { Ticket as TicketTypes, Toast, TicketCard } from '../types/index';
-import { deleteTicket } from '@/api/TicketsAPI'
+import { defineProps } from 'vue';
+import { useRoute } from 'vue-router'
+import type { Ticket, TicketCard, RaffleByTicketId } from '../types/index';
+import { raffleServiceHandler } from '../utils/services';
 
 
-
-
-const toast = inject<Toast>('toast')!
 const route = useRoute()
-const router = useRouter()
+
 const props = defineProps<{ ticket: TicketCard }>();
 const raffleId = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id;
 const ticketId = String(props.ticket._id);
+const service = raffleServiceHandler()
 
 
-const dataId = {
+const dataId: RaffleByTicketId = {
+    _id: ticketId,
     raffleId,
     ticketId
 }
 
-const cancelTicket = async(dataId: { raffleId: string; ticketId: string }) => {
-    
-    try {
-        const result = confirm('¿Deseas Eliminar esta Rifa?')
-        if(result){
-            const data  = await deleteTicket(dataId)
-            toast?.open({
-                message: data || 'Ticket eliminado con éxito',
-                type: 'success'
-            })
-        }
+const cancelTicket = async(dataId: RaffleByTicketId) => service.deleteTicketService(dataId)
 
-        setTimeout(() => {
-            router.push({name:'raffles'})
-        }, 1500);
-
-
-    } catch (error) {
-        console.log(error)
-    }
-}
 
 
 </script>
@@ -48,72 +28,75 @@ const cancelTicket = async(dataId: { raffleId: string; ticketId: string }) => {
 <template>
     <div class="admin-card bg-white shadow-lg rounded-lg p-6 mb-6 max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4">Información del Usuario</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-6">
-            <div class="flex-1">
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2"></path>
-                    </svg>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-700">Documento:</p>
-                        <p class="text-gray-900 text-base">{{ ticket.document }}</p>
-                    </div>
-                </div>
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8"></path>
-                    </svg>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-700">Nombre:</p>
-                        <p class="text-gray-900 text-base">{{ ticket.name }}</p>
-                    </div>
-                </div>
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.403-1.403A7.968 7.968 0 0018 13.882V11H7v2.882a7.968 7.968 0 00-1.597 1.715L4 17h5m6 0v-2h-6v2m1-14a5 5 0 00-5 5v2h10V8a5 5 0 00-5-5z"></path>
-                    </svg>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-700">Email:</p>
-                        <p class="text-gray-900 text-base">{{ ticket.email }}</p>
-                    </div>
+        <div class="flex flex-col gap-6">
+            <!-- Documento -->
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2"></path>
+                </svg>
+                <div>
+                    <p class="text-lg font-semibold text-gray-700">Documento:</p>
+                    <p class="text-gray-900 text-base">{{ ticket.document }}</p>
                 </div>
             </div>
-            <div class="flex-1">
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11.58V17H5v-5.42A3.99 3.99 0 014 8V4h16v4a4 4 0 01-1 7.58zM12 13h.01M10 13h.01M8 13h.01M6 13h.01M16 13h.01"></path>
-                    </svg>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-700">Teléfono:</p>
-                        <p class="text-gray-900 text-base">{{ ticket.phone }}</p>
-                    </div>
+            <!-- Nombre -->
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8"></path>
+                </svg>
+                <div>
+                    <p class="text-lg font-semibold text-gray-700">Nombre:</p>
+                    <p class="text-gray-900 text-base">{{ ticket.name }}</p>
                 </div>
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"></path>
-                    </svg>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-700">Dirección:</p>
-                        <p class="text-gray-900 text-base">{{ ticket.address }}</p>
-                    </div>
+            </div>
+            <!-- Email -->
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.403-1.403A7.968 7.968 0 0018 13.882V11H7v2.882a7.968 7.968 0 00-1.597 1.715L4 17h5m6 0v-2h-6v2m1-14a5 5 0 00-5 5v2h10V8a5 5 0 00-5-5z"></path>
+                </svg>
+                <div>
+                    <p class="text-lg font-semibold text-gray-700">Email:</p>
+                    <p class="text-gray-900 text-base">{{ ticket.email }}</p>
                 </div>
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"></path>
-                    </svg>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-700">Cantidad:</p>
-                        <p class="text-gray-900 text-base">{{ ticket.quantity }}</p>
-                    </div>
+            </div>
+            <!-- Teléfono -->
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11.58V17H5v-5.42A3.99 3.99 0 014 8V4h16v4a4 4 0 01-1 7.58zM12 13h.01M10 13h.01M8 13h.01M6 13h.01M16 13h.01"></path>
+                </svg>
+                <div>
+                    <p class="text-lg font-semibold text-gray-700">Teléfono:</p>
+                    <p class="text-gray-900 text-base">{{ ticket.phone }}</p>
                 </div>
-                <div class="flex items-center mb-4">
-                    <svg class="w-6 h-6 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"></path>
-                    </svg>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-700">Referencia de Pago:</p>
-                        <p class="text-gray-900 text-base">{{ ticket.paymentReference }}</p>
-                    </div>
+            </div>
+            <!-- Dirección -->
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"></path>
+                </svg>
+                <div>
+                    <p class="text-lg font-semibold text-gray-700">Dirección:</p>
+                    <p class="text-gray-900 text-base">{{ ticket.address }}</p>
+                </div>
+            </div>
+            <!-- Cantidad -->
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"></path>
+                </svg>
+                <div>
+                    <p class="text-lg font-semibold text-gray-700">Cantidad:</p>
+                    <p class="text-gray-900 text-base">{{ ticket.quantity }}</p>
+                </div>
+            </div>
+            <!-- Referencia de Pago -->
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"></path>
+                </svg>
+                <div>
+                    <p class="text-lg font-semibold text-gray-700">Referencia de Pago:</p>
+                    <p class="text-gray-900 text-base">{{ ticket.paymentReference }}</p>
                 </div>
             </div>
         </div>

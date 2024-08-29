@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { useRaffleStore } from '@/stores/raffles';
-import { onMounted, ref, inject } from 'vue';
+import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import type { RaffleById, Toast } from '@/types/index';
-import { deleteRaffle } from '@/api/RafflesApi';
+import type { RaffleById,  } from '@/types/index';
+import { raffleServiceHandler } from '@/utils/services';
 
 
-const toast = inject<Toast>('toast')!;
 const router = useRouter()
 const route = useRoute();   
 const store = useRaffleStore();
+const serviceRaffle = raffleServiceHandler()
 
 const raffleId = route.params.id
 const id:RaffleById | any = raffleId
@@ -23,36 +23,17 @@ onMounted(async() => {
   }
 });
 
-const goToPanel = () => {
-  router.push({ name: 'raffles' });
-};
+//Boton de Panel
+
+const goToPanel = () => router.push({ name: 'raffles' });
+
 
 //Boton De eliminar
-
-const deleteRaffleButton = async() => {
-    try {
-        const result = confirm('¿Deseas Eliminar este sorteo?')
-        if(result){
-            const data  = await deleteRaffle(id)
-            toast.open({
-                message: data,
-                type: 'success'
-            })
-
-            setTimeout(() => {
-                router.push({ name: 'raffles' });
-            }, 2000);
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
+const deleteRaffleButton = async(id: RaffleById) => await serviceRaffle.deleteRaffleService(id)
 
 // Boton de Tickets
+const goToTickets = () => router.push({name: 'allTickets'});
 
-const goToTickets = () => {
-    router.push({name: 'allTickets'})
-}
 
 </script>
 
@@ -109,11 +90,11 @@ const goToTickets = () => {
                 Volver Al Panel Principal
             </button>
 
-            <button @click="deleteRaffleButton" class="bg-red-600 text-white font-bold text-xl px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 w-full">
+            <button @click="deleteRaffleButton(id)" class="bg-red-600 text-white font-bold text-xl px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 w-full">
                 Eliminar Sorteo
             </button>
 
-            <button @click="deleteRaffleButton" class="bg-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition duration-300 w-full">
+            <button @click="deleteRaffleButton(id)" class="bg-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition duration-300 w-full">
                 Modificar Sorteo
             </button>
         </div>

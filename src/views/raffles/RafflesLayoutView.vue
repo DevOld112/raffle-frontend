@@ -5,23 +5,8 @@ import AOS from 'aos'
 import { onMounted, onUpdated } from 'vue';
 
 
-
-
 const router = useRouter()
 const isCreatingRaffle = ref(false);
-AOS.init({
-    duration: 800,  
-    easing: 'ease-in-out',  
-    once: true,  
-    })
-
-    onMounted(() => {
-    AOS.refresh();
-    });
-
-    onUpdated(() => {
-    AOS.refresh();
-});
 
 
 const createRaffle = () => {

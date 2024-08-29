@@ -1,33 +1,13 @@
 <script setup lang="ts">
 import { FormKit } from '@formkit/vue';
-import { createRaffle } from '@/api/RafflesApi';
 import type { RaffleCreation } from '@/types/index';
-import { inject } from 'vue';
-import type { Toast } from '@/types';
-import { useRouter } from 'vue-router';
+import { raffleServiceHandler } from '@/utils/services';
 
 
-const router = useRouter()
-const toast = inject<Toast>('toast')!
+const raffleService = raffleServiceHandler()
 
 const createRaffleForm = async(formData: RaffleCreation ) => {
-    try {
-        const data = await createRaffle(formData)
-        
-        toast.open({
-            message: data,
-            type: 'success'
-        })
-
-        setTimeout(() => {
-            router.push({name: 'raffles'})
-        }, 1500);
-    } catch (error) {
-        toast.open({
-            message: 'Existe algun campo vacio, por favor revisar',
-            type: 'error'
-        })
-    }
+    return await raffleService.createRaffleService(formData)
 }
 
 </script>

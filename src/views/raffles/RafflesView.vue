@@ -10,7 +10,6 @@ onMounted(() => {
 });
 
 
-
 </script>
 
 <template>
@@ -22,6 +21,7 @@ onMounted(() => {
         v-for="raffle in store.raffles"
         :key="raffle.id"
         :raffle="raffle"
+
         />
     </div>
 
