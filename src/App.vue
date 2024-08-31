@@ -14,7 +14,6 @@ AOS.init({
 })
 
 onMounted(() => {
-  console.log(route.name)
   AOS.refresh();
 });
 
@@ -27,11 +26,13 @@ onUpdated(() => {
 <template>
   <div class="md:flex flex-col h-screen">
 
-    <Header />
+    <Header
+    v-if="route.name !== 'home'"
+    />
 
     <div class="md:flex flex-grow">
-      <div v-if="route.name !== 'home'"class="bg-cover bg-center md:w-1/3 bg-app"></div>
-      <div :class="['px-10 py-5 min-h-full overflow-y-auto mb-10', route.name !== 'home' ? 'md:w-2/3' : 'md:w-full']">
+      <div v-if="route.name !== 'home' && route.name !=='rafflePublic' && route.name !=='allTickets'"class="bg-cover bg-center md:w-1/3 bg-app"></div>
+      <div :class="['px-10 py-5 min-h-full overflow-y-auto mb-10', route.name !== 'home' && route.name !=='rafflePublic' && route.name !=='allTickets' ? 'md:w-2/3' : 'sm:w-full']">
         <RouterView
         data-aos="fade-left"
         data-aos-duration="500"

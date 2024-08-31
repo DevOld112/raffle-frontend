@@ -7,7 +7,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      children: [
+
+      ]
     },
     {
       path: '/auth',
@@ -45,8 +48,18 @@ const router = createRouter({
           path: 'raffle/create',
           name: 'createRaffle',
           component: () => import('../views/raffles/RaffleCreateView.vue')
-        }
+        },
+        {
+          path: 'raffle/update/:id',
+          name: 'updateRaffle',
+          component: () => import('../views/raffles/RaffleUpdateView.vue')
+        },
       ]
+    },
+    {
+      path:'/proffit',
+      name:'proffit',
+      component: () => import('../views/proffits/ProffitLayoutView.vue')
     },
     {
       path: '/raffle/:id/tickets',
@@ -59,6 +72,11 @@ const router = createRouter({
           component: () => import('../views/tickets/TicketsView.vue')
         }
       ]
+    },
+    { 
+      path: '/public/raffle/:id',
+      name:'rafflePublic',
+      component: () => import('../landing-page/landing-page/sections/RaffleSection/RaffleDetailUser.vue')
     }
   ]
 })

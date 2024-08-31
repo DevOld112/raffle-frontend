@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import Header from '@/landing-page/landing-page/Header.vue'
+import Main from '@/landing-page/landing-page/Main.vue'
 
 </script>
 
-<template>
-  <main>
-    <h1 class="text-center text-4xl min-h-screen my-10">Rifas - Sonia</h1>
-  </main>
+<template >
+  <div class="min-h-screen">
+    <Header />
+
+    <Main />
+
+  </div>
+  
+  
 </template>

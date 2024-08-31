@@ -11,7 +11,6 @@ export async function getAllTicketsByRaffles(raffleId: TicketByRaffle){
     try {
         const url = `/raffle/${raffleId}/ticket`
         const { data } = await api.get(url)
-        console.log(data)
         return data
 
     } catch (error) {

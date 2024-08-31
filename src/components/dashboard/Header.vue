@@ -1,33 +1,29 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
 import { sesionAuth } from '@/utils/auth';
-import { onMounted, ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
-
-
-
-
-const store = useUserStore()
-const sesion = sesionAuth()
-const router = useRouter()
-const userLogin = ref(false)
-
-
-
-onMounted(async() => {
-    await store.getUserInterface();
-    userLogin.value = !!store.user?.name;
-})
+const store = useUserStore();
+const sesion = sesionAuth();
+const router = useRouter();
+const route = useRoute();
+const userLogin = ref(false);
 
 watch(() => store.user?.name, (newValue) => {
     userLogin.value = !!newValue;
-})
+});
+
+// Inicializar el estado de userLogin en el montaje del componente
+userLogin.value = !!store.user?.name;
 
 const home = () => {
-    router.push({name: 'raffles'})
-}
+    router.push({ name: 'home' });
+};
 
+const proffit = () => router.push({ name: 'proffit' });
+
+const goBack = () => router.push({ name: 'raffles' });
 
 </script>
 
@@ -40,11 +36,17 @@ const home = () => {
     </div>
     
 
-    <div v-if="userLogin"class="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center text-base sm:text-lg md:text-xl">
+    <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center text-base sm:text-lg md:text-xl">
         <p>Bienvenido, <span class="font-bold italic">{{store.user?.name}}</span> </p>
 
-        <button @click="" class="text-white bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded-lg font-bold transition-colors duration-300">
-        Panel de Ganancias
+ 
+
+        <button v-if="route.name !== 'proffit'" @click="proffit" class="text-white bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded-lg font-bold transition-colors duration-300">
+        Ganancias
+        </button>
+        
+        <button v-else @click="goBack" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg font-bold transition-colors duration-300">
+            Volver
         </button>
 
         <button @click="sesion.logout" class="bg-red-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-700">

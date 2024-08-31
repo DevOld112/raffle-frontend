@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { getAllRaffles, getRaffleById } from '@/api/RafflesApi';
+import {  getPublicRaffles, getPublicRaffleById } from '@/api/PublicAPI';
 import type { Raffle, RaffleById, Ticket, TicketByRaffle } from '@/types';
 import { getAllTicketsByRaffles } from '@/api/TicketsAPI';
 
-export const useRaffleStore = defineStore('raffles', () => {
+export const usePublicStore = defineStore('public', () => {
     const raffles = ref<Raffle[]>([]);
     const raffle = ref<Raffle>({
         _id: '',
@@ -19,20 +19,23 @@ export const useRaffleStore = defineStore('raffles', () => {
     });
     const tickets = ref<Ticket[]>([]);
 
-    const fetchRaffles = async () => {
+
+
+    const fetchPublicRaffles = async() =>{
         try {
-            const data = await getAllRaffles();
-            raffles.value = data; 
+            const data = await getPublicRaffles();
+            raffles.value = data;
             return raffles;
         } catch (error) {
             console.log(error);
         }
-    };
+    }
 
 
-    const fetchRaffle = async (id: RaffleById) => {
+    const fetchPublicRaffle = async (id: RaffleById) => {
         try {
-            const data = await getRaffleById(id);
+            console.log(id)
+            const data = await getPublicRaffleById(id);
           
             raffle.value = data;
             return raffle;
@@ -42,23 +45,14 @@ export const useRaffleStore = defineStore('raffles', () => {
     };
 
 
-    const fetchTickets = async (id: TicketByRaffle) => {
-        try {
-            const data = await getAllTicketsByRaffles(id);
-            tickets.value = data;
-            return tickets
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
 
     return {
         raffle,
         raffles,
         tickets,
-        fetchRaffles,
-        fetchRaffle,
-        fetchTickets,
+        fetchPublicRaffles,
+        fetchPublicRaffle,
+
     };
 });

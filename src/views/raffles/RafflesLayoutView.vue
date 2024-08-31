@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRouter } from 'vue-router';
 import { ref } from 'vue';
-import AOS from 'aos'
-import { onMounted, onUpdated } from 'vue';
+
 
 
 const router = useRouter()
@@ -24,7 +23,7 @@ const goBack = () => {
 <template>
     <div>
         <header class="bg-gray-200 p-4 space-y-5">
-            <h1 class="text-4xl text-center font-bold">Panel Principal de Administración</h1>
+            <h1 class="text-4xl text-center font-bold">Panel de Administración</h1>
 
             
             <div class="flex justify-center md:justify-end gap-3">
@@ -49,9 +48,14 @@ const goBack = () => {
             </div>
 
         </header>
+        
+
         <RouterView
             data-aos="fade-right"
             data-aos-duration="500"
         />
+
+
+        
     </div>
 </template>

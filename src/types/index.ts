@@ -23,7 +23,8 @@ export const rafflesSchema = z.object({
     })),
     availableQuantity: z.number(),
     price: z.number(),
-    totalAmount: z.number()
+    totalAmount: z.number(),
+    endDate: z.date()
 })
 
 /** Tickets */
@@ -56,12 +57,14 @@ export type Raffle = z.infer<typeof rafflesSchema>
 
 export type RaffleCard = Pick<Raffle, '_id' |'title'| 'description' | 'price' | 'tickets'>
 export type RaffleById = Pick<Raffle, '_id'>
-export type RaffleCreation = Pick<Raffle, 'title' | 'description'| 'premiums' |'price'>
+export type RaffleCreation = Pick<Raffle, 'title' | 'description'| 'premiums' |'price'| 'endDate' >
 
 export type Ticket = z.infer<typeof ticketSchema>
 
 export type TicketByRaffle = string | string[];
 export type TicketCard = Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' | '_id'>
+export type TicketCreation= Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' >
+export type TicketId = Pick<Ticket, '_id'>
 
 
 export interface RaffleByTicketId {

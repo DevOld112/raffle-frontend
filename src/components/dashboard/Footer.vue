@@ -8,8 +8,8 @@ library.add(faFacebook, faTwitter, faInstagram);
 </script>
 
 <template>
-    <footer class="bg-gray-900 text-white p-6 text-center space-y-2 md:space-y-4 flex items-center justify-between">
-        <div class="flex gap-10 fa-2x">
+    <footer class="bg-gray-900 text-white p-6 text-center space-y-2 md:space-y-4 flex items-center justify-between ">
+        <div class="lg:flex gap-10 fa-2x hidden">
             <font-awesome-icon :icon="['fab', 'facebook']" />
             <font-awesome-icon :icon="['fab', 'twitter']" />
             <font-awesome-icon :icon="['fab', 'instagram']" />

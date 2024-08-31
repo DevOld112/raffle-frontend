@@ -1,25 +1,33 @@
 <script setup lang="ts">
-import { FormKit } from '@formkit/vue';
+import { onMounted } from 'vue'
+import { useRoute } from 'vue-router';
 import type { RaffleCreation } from '@/types/index';
 import { raffleServiceHandler } from '@/utils/services';
+import { useRaffleStore } from '@/stores/raffles'
 
-
+const route = useRoute();
+const raffle = useRaffleStore()
 const raffleService = raffleServiceHandler()
+const raffleId: string = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id;
 
-const createRaffleForm = async(formData: RaffleCreation ) => {
-    return await raffleService.createRaffleService(formData)
+const updateRaffleForm = async(formData: RaffleCreation ) => {
+    return await raffleService.updateRaffleService(raffleId, formData)
 }
+
+onMounted( async() => {
+    await console.log(raffle.raffle)
+})
 
 </script>
 
 <template>
-        <h1 class="mt-10 text-4xl font-bold text-center">Crear Sorteo</h1>
+        <h1 class="mt-10 text-4xl font-bold text-center">Modificar Sorteo</h1>
         
         <FormKit
             id="loginForm"
             type="form"
             :actions="false"
-            @submit="createRaffleForm"
+            @submit="updateRaffleForm"
         >
 
         <FormKit
@@ -54,13 +62,7 @@ const createRaffleForm = async(formData: RaffleCreation ) => {
             placeholder="Ej. 80$"
         />
 
-        <FormKit
-            type="date"
-            label="Fecha de su pago"
-            name="endDate"
-        />
-
-        <FormKit type="submit">Crear Sorteo</FormKit>
+        <FormKit type="submit">Actualizar Sorteo</FormKit>
 
     </FormKit>
     

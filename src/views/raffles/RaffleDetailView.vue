@@ -4,6 +4,8 @@ import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import type { RaffleById,  } from '@/types/index';
 import { raffleServiceHandler } from '@/utils/services';
+import { formatDate } from '../../helper/date';
+
 
 
 const router = useRouter()
@@ -28,11 +30,23 @@ onMounted(async() => {
 const goToPanel = () => router.push({ name: 'raffles' });
 
 
-//Boton De eliminar
+//Boton De Eliminar
 const deleteRaffleButton = async(id: RaffleById) => await serviceRaffle.deleteRaffleService(id)
+
+//Boton de Actualizar
+
+const updateRaffleButton = async(id: RaffleById) => router.push({name: 'updateRaffle'})
+
 
 // Boton de Tickets
 const goToTickets = () => router.push({name: 'allTickets'});
+
+function formatDateOrFallback(dateString: string | null | undefined): string {
+    if (!dateString) {
+        return 'Fecha no disponible';
+    }
+    return formatDate(dateString);
+}
 
 
 </script>
@@ -63,12 +77,16 @@ const goToTickets = () => router.push({name: 'allTickets'});
                 <p class="text-xl font-bold text-gray-600">{{ store.raffle.totalAmount }}$</p>
                 </div>
                 <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800">Número de Tickets</h3>
+                <h3 class="text-lg font-semibold text-gray-800">Número de Pedidos</h3>
                 <p class="text-xl font-bold text-gray-600">{{ store.raffle.tickets.length }}</p>
                 </div>
                 <div class="bg-gray-100 p-4 rounded-lg shadow-md col-span-2">
                     <h3 class="text-lg font-semibold text-gray-800">Premios</h3>
                     <p class="text-gray-600">{{ store.raffle.premiums }}</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md col-span-2">
+                    <h3 class="text-lg font-semibold text-gray-800">Fecha de Finalizacion</h3>
+                    <p class="text-gray-600">{{ formatDateOrFallback(store.raffle.endDate)  }}</p>
                 </div>
             </div>
             </div>
@@ -94,7 +112,7 @@ const goToTickets = () => router.push({name: 'allTickets'});
                 Eliminar Sorteo
             </button>
 
-            <button @click="deleteRaffleButton(id)" class="bg-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition duration-300 w-full">
+            <button @click="updateRaffleButton(id)" class="bg-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition duration-300 w-full">
                 Modificar Sorteo
             </button>
         </div>
