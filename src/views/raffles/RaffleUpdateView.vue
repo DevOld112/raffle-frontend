@@ -28,7 +28,7 @@ onMounted( async() => {
         title: raffle.raffle?.title || '',
         description: raffle.raffle?.description || '',
         premiums: raffle.raffle?.premiums || '',
-        price: (raffle.raffle?.price || 0).toString(),
+        price: raffle.raffle?.price || 0,
         endDate: (raffle.raffle?.endDate ? new Date(raffle.raffle.endDate).toISOString().split('T')[0] : ''),
     }
 })
@@ -71,7 +71,7 @@ onMounted( async() => {
         />
 
         <FormKit 
-            type="text"
+            type="number"
             label="Precio"
             name="price"
             placeholder="Ej. 80$"
