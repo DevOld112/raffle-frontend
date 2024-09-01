@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { getAllRaffles, getRaffleById } from '@/api/RafflesApi';
-import type { Raffle, RaffleById, Ticket, TicketByRaffle } from '@/types';
+import type { Raffle, RaffleById, Ticket, TicketByRaffle, TicketCard } from '@/types';
 import { getAllTicketsByRaffles } from '@/api/TicketsAPI';
 
 export const useRaffleStore = defineStore('raffles', () => {
@@ -45,7 +45,7 @@ export const useRaffleStore = defineStore('raffles', () => {
     const fetchTickets = async (id: TicketByRaffle) => {
         try {
             const data = await getAllTicketsByRaffles(id);
-            tickets.value = data;
+            tickets.value = Array.isArray(data) ? data : [];
             return tickets
         } catch (error) {
             console.log(error);
