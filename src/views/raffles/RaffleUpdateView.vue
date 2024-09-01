@@ -18,7 +18,7 @@ const updateRaffle = ref<RaffleUpdate>({
         endDate: ''
 })
 
-const updateRaffleForm = async(formData: RaffleCreation ) => {
+const updateRaffleForm = async(formData: RaffleUpdate ) => {
     return await raffleService.updateRaffleService(raffleId, formData)
 }
 
@@ -71,7 +71,7 @@ onMounted( async() => {
         />
 
         <FormKit 
-            type="number"
+            type="text"
             label="Precio"
             name="price"
             placeholder="Ej. 80$"

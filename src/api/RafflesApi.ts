@@ -1,4 +1,4 @@
-import type { Raffle, RaffleById, RaffleCreation, PaymentUser } from "@/types";
+import type { Raffle, RaffleById, RaffleCreation, PaymentUser, RaffleUpdate } from "@/types";
 import api from '../lib/axios'
 import { isAxiosError } from "axios";
 
@@ -57,7 +57,7 @@ export async function createRaffle(formData: RaffleCreation){
     }
 }
 
-export async function updateRaffle(id: string, formData: RaffleCreation){
+export async function updateRaffle(id: string, formData: RaffleUpdate){
     try {
         const url = `/raffle/${id}`
         const { data } = await api.put(url ,formData)

@@ -68,7 +68,14 @@ export type Raffle = z.infer<typeof rafflesSchema>
 export type RaffleCard = Pick<Raffle, '_id' |'title'| 'description' | 'price' | 'tickets' >
 export type RaffleById = Pick<Raffle, '_id'>
 export type RaffleCreation = Pick<Raffle, 'title' | 'description'| 'premiums' |'price'| 'endDate' >
-export type RaffleUpdate = Pick<Raffle, 'title' | 'description' | 'premiums' | 'price' | 'endDate'>
+export type RaffleUpdate = {
+    title: string;
+    description: string;
+    premiums: string;
+    price: number;
+    endDate: string; 
+};
+
 
 
 export type Ticket = z.infer<typeof ticketSchema>

@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router';
 import { createRaffle, deleteRaffle, updateRaffle } from '@/api/RafflesApi';
 import { acceptTicket, deleteTicket, getAllTicketsByRaffles } from '@/api/TicketsAPI';
 import { createTicketByRaffle } from '@/api/PublicAPI';
-import type { Toast, RaffleById, RaffleCreation, Ticket, TicketCreation, TicketId } from '@/types';
+import type { Toast, RaffleById, RaffleCreation, Ticket, TicketCreation, TicketId, RaffleUpdate } from '@/types';
 import Swal from 'sweetalert2';
 import { useRaffleStore } from '@/stores/raffles';
 
@@ -71,7 +71,7 @@ export const raffleServiceHandler = () => {
         }
     }
 
-    async function updateRaffleService(id: string, formData: RaffleCreation){
+    async function updateRaffleService(id: string, formData: RaffleUpdate){
         try {
             const result = await Swal.fire({
                 title: '¿Deseas Modificar este sorteo?',
@@ -84,9 +84,16 @@ export const raffleServiceHandler = () => {
             });
     
             if (result.isConfirmed) {
-                const data = await updateRaffle(id, formData);
+                const dataToSend = {
+                    ...formData,
+                    price: formData.price, 
+                    endDate: new Date(formData.endDate).toISOString() 
+                };
+
+                const response = await updateRaffle(id, dataToSend);
+
                 toast.open({
-                    message: data,
+                    message: response,
                     type: 'success'
                 });
     
