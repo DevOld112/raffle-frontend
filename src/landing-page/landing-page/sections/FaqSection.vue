@@ -1,42 +1,13 @@
 <script setup lang="ts">
-import { ref, Transition, Ref } from 'vue';
-import faqs from '../data/faqs';
+import faqs from "../data/faqs";
+import { ref } from "vue";
 
-
-interface Faq {
-  id: number;
-  title: string;
-  description: string;
-}
-
-// Initialize state
-const isOpen = ref<number | null>(null);
-
-// Function to toggle FAQ
-function toggleFaq(faqId: number): void {
+function toggleFaq(faqId: number) {
   isOpen.value = isOpen.value === faqId ? null : faqId;
 }
 
-// Animation hooks
-const beforeEnter = (el: HTMLElement) => {
-  el.style.maxHeight = '0';
-  el.style.opacity = '0';
-};
+let isOpen = ref(1);
 
-const enter = (el: HTMLElement, done: () => void) => {
-  el.offsetHeight; // trigger reflow
-  el.style.transition = 'max-height 1.5s ease, opacity 1.5s ease';
-  el.style.maxHeight = '500px';
-  el.style.opacity = '1';
-  done();
-};
-
-const leave = (el: HTMLElement, done: () => void) => {
-  el.style.transition = 'max-height 1.5s ease, opacity 1.5s ease';
-  el.style.maxHeight = '0';
-  el.style.opacity = '0';
-  done();
-};
 </script>
 <template>
   <!-- Questions Section Start -->
@@ -68,9 +39,7 @@ const leave = (el: HTMLElement, done: () => void) => {
             </li>
             <transition
               name="faq-transition"
-              @before-enter="beforeEnter"
-              @enter="enter"
-              @leave="leave"
+
             >
               <p v-if="isOpen === faq.id" 
                  class=" text-xl font-bold px-6 font-theme-content text-md lg:text-lg py-5  text-justify overflow-hidden">

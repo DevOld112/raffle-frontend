@@ -46,7 +46,7 @@ onMounted(() => {
         </Slide>
     </Carousel>
 
-   
+    <FaqSection />
     
 </template>
 
