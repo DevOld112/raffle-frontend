@@ -23,7 +23,7 @@ const submitPayment = async(formData: TicketCreation ) => await raffleService.cr
 </script>
 
 <template>
-    <div class="bg-gray-50 p-4 space-y-5 rounded-lg text-xl">
+    <div class="p-4 space-y-5 rounded-lg bg-gray-600 text-xl">
         <h1 class="mt-10 text-4xl font-bold text-center mb-10">Formulario de Pago</h1>
         <div class="bg-yellow-200 w-full p-6 rounded-lg flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 text-yellow-800 mr-3">
@@ -32,7 +32,7 @@ const submitPayment = async(formData: TicketCreation ) => await raffleService.cr
             <span class="text-yellow-800 font-extrabold text-2xl">Importante:</span>
             <p class="text-yellow-600 font-extrabold ml-3">Es fundamental que completes todos los datos para que podamos procesar tu pago correctamente.</p>
         </div>
-        <p class="text-medium font-bold text-center ">
+        <p class="text-medium font-bold  text-center ">
             Completa todos los campos para verificar tu pago rápidamente. Recibirás una confirmación por correo electrónico.
         </p>
     </div>
@@ -40,9 +40,9 @@ const submitPayment = async(formData: TicketCreation ) => await raffleService.cr
     
     <FormKit id="paymentForm" type="form" :actions="false" @submit="submitPayment">
         <!-- Datos Personales -->
-        <div class="w-full p-6 bg-gray-50 rounded-lg shadow-md my-5">
-        <fieldset class="border border-gray-300 rounded-md">
-            <legend class="ml-3 text-lg p-2  bg-slate-200 text-gray-800 font-semibold rounded-md">
+        <div class="w-full p-6 bg-gray-600 rounded-lg shadow-md my-5">
+        <fieldset class="border  border-gray-300 rounded-md">
+            <legend class="ml-3 text-lg p-2  bg-gray-500 font-semibold rounded-md">
                 Datos Personales
             </legend>
             <div class="p-4">
@@ -88,9 +88,9 @@ const submitPayment = async(formData: TicketCreation ) => await raffleService.cr
 
         <div class="flex gap-10 w-full sm:grid grid-cols-1">
         <!-- Boletos -->
-        <div class="w-full p-6 bg-gray-50 rounded-lg shadow-md">
+        <div class="w-full p-6 bg-gray-600  rounded-lg shadow-md">
             <fieldset class="border border-gray-300 rounded-md">
-                <legend class="ml-3 text-lg p-2  bg-slate-200 text-gray-800 font-semibold rounded-md">
+                <legend class="ml-3 text-lg p-2  bg-gray-500 font-semibold rounded-md">
                     Boletos
                 </legend>
                 <div class="p-4">
@@ -102,22 +102,23 @@ const submitPayment = async(formData: TicketCreation ) => await raffleService.cr
                         v-model="quantity"
                     />
                     
-                    <p class="mt-2 text-gray-600">Precio unitario del boleto: {{ props.raffle.price.toFixed(2) }}USD</p>
-                    <p class="mt-2 text-gray-600 font-semibold">Total a pagar: {{ totalPrice }}$</p>
+                    <p class="mt-2 ">Precio unitario del boleto: {{ props.raffle.price.toFixed(2) }}USD</p>
+                    <p class="mt-2  font-semibold">Total a pagar: {{ totalPrice }}$</p>
                 </div>
             </fieldset>
         </div>
 
         <!-- Realizar el Pago -->
-        <div class="w-full p-6 bg-gray-50 rounded-lg shadow-md">
+        <div class="w-full p-6 bg-gray-600 rounded-lg shadow-md">
             <fieldset class="border border-gray-300 rounded-md">
-                <legend class="ml-3 text-lg p-2  bg-slate-200 text-gray-800 font-semibold rounded-md">
+                <legend class="ml-3 text-lg p-2  bg-gray-500  font-semibold rounded-md">
                     Realizar el Pago
                 </legend>
                 <div class="p-4 space-y-4">
-                    <p class="text-gray-600">Teléfono beneficiario: 0414-1234567</p>
-                    <p class="mt-2 text-gray-600">Cédula beneficiario: 12345678</p>
-                    <p class="mt-2 text-gray-600">Banco beneficiario: Banco de Venezuela (0102)</p>
+                    <p class="">Teléfono beneficiario: {{props.raffle.phone}}</p>
+                    <p class="mt-2 ">Entidad Bancaria: {{  props.raffle.bankEntity  }}</p>
+                    <p class="mt-2 ">Banco beneficiario: {{  props.raffle.accountBank  }}</p>
+                    <p class="mt-2 ">Binance ID: {{  props.raffle.binanceID  }}</p>
                     <FormKit
                         type="text"
                         label="Referencia de su pago"

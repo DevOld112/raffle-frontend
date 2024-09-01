@@ -10,11 +10,11 @@
 
 <template>
     <!-- Navbar Start -->
-    <div class="container mx-auto px-5">
+    <div class="container rounded-2xl mx-auto p-2">
         <header class="flex justify-between py-12 items-center">
-            <div class="lg:flex items-center  ">
+            <div class="flex items-center  ">
         <img @click="home" src="../../../public/img/logo.png" class="h-24 w-24 cursor-pointer">
-        <p class="text-2xl text-black font-bold">Raffle</p><span class=" text-2xl font-extrabold italic text-teal-400  logo-text">M<span class="text-black">aster</span></span>
+        <p class="text-2xl  font-bold">Raffle</p><span class=" text-2xl font-extrabold italic text-teal-400  logo-text">M<span class="text-white">aster</span></span>
     </div>
             
             <nav class="flex justify-end flex-col md:flex-row">
@@ -27,9 +27,9 @@
 
                 <!-- Desktop Menu -->
                 <ul class="space-x-10 font-bold font-theme-heading italic items-center hidden md:flex  flex-col space-y-7 md:space-y-0 md:flex-row">
-                    <li class="uppercase hover:text-theme-secondary transition duration-200"><a href="#features" v-smooth-scroll>¿Quienes Somos?</a></li>
-                    <li class="uppercase hover:text-theme-secondary transition duration-200"><a href="#faq" v-smooth-scroll>Caracteristicas</a></li>
-                    <li class="uppercase hover:text-theme-secondary transition duration-200"><a href="#subscribe" v-smooth-scroll>Nuestros Sorteos</a></li>
+                    <li class="uppercase hover:text-teal-400 transition duration-200"><a href="#features" v-smooth-scroll>¿Quienes Somos?</a></li>
+                    <li class="uppercase hover:text-teal-400 transition duration-200"><a href="#faq" v-smooth-scroll>Caracteristicas</a></li>
+                    <li class="uppercase hover:text-teal-400 transition duration-200"><a href="#subscribe" v-smooth-scroll>Nuestros Sorteos</a></li>
 
                 </ul>
             </nav>

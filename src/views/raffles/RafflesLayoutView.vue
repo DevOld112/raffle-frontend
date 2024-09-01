@@ -22,7 +22,7 @@ const goBack = () => {
 
 <template>
     <div>
-        <header class="bg-gray-200 p-4 space-y-5">
+        <header class=" p-4 space-y-5">
             <h1 class="text-4xl text-center font-bold">Panel de Administración</h1>
 
             

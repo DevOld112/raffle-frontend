@@ -1,8 +1,8 @@
 import { useRouter } from 'vue-router'
-import type { UserLoginForm ,Toast } from '@/types/index'
+import type { UserLoginForm ,Toast, PaymentUser } from '@/types/index'
 import { ref, inject } from 'vue'
 import { useUserStore } from '@/stores/user'
-import { loginUser } from '@/api/AuthAPI';
+import { loginUser, paymentData } from '@/api/AuthAPI';
 import Swal from 'sweetalert2';
 
 export const sesionAuth = () => {
@@ -65,8 +65,42 @@ export const sesionAuth = () => {
         }
     }
 
+    const updatePayment = async(formData : PaymentUser) => {
+        try {
+            const result = await Swal.fire({
+                title: '¿Deseas Actualizar tu informacion de pago?',
+                text: 'Asegurate que todos tus datos son correctos.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, Actualizar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            });
+
+            if (result.isConfirmed) {
+
+                const data = await paymentData(formData)
+
+                toast.open({
+                    message: data,
+                    type: 'success'
+                });
+
+
+
+                setTimeout(() => {
+                    router.push({ name: 'raffles' });
+                }, 2000);
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return { 
         login,
-        logout
+        logout,
+        updatePayment
     }
 }

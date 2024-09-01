@@ -19,8 +19,8 @@ const goBack = () => router.push({ name: 'raffles' });
 <template>
 
     <div>
-        <div class="bg-gray-200 p-4 space-y-10">
-            <h1 class="text-4xl text-center font-bold">Panel Principal de Administración</h1>
+        <div class="p-4 space-y-10">
+            <h1 class="text-4xl text-center font-bold">Panel de Tickets</h1>
             <p class="text-xl font-bold text-center italic my-5">Gestiona tus tickets</p>
             
             <div class="flex justify-center md:justify-end gap-3">

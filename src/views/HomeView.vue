@@ -5,7 +5,7 @@ import Main from '@/landing-page/landing-page/Main.vue'
 </script>
 
 <template >
-  <div class="min-h-screen">
+  <div class="">
     <Header />
 
     <Main />

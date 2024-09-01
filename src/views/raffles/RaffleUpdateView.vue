@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router';
-import type { RaffleCreation } from '@/types/index';
+import type { RaffleCreation, RaffleUpdate } from '@/types/index';
 import { raffleServiceHandler } from '@/utils/services';
 import { useRaffleStore } from '@/stores/raffles'
 
@@ -10,12 +10,27 @@ const raffle = useRaffleStore()
 const raffleService = raffleServiceHandler()
 const raffleId: string = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id;
 
+const updateRaffle = ref<RaffleUpdate>({
+        title: '',
+        description: '',
+        premiums: '',
+        price: 0,
+        endDate: new Date()
+})
+
 const updateRaffleForm = async(formData: RaffleCreation ) => {
     return await raffleService.updateRaffleService(raffleId, formData)
 }
 
 onMounted( async() => {
-    await console.log(raffle.raffle)
+    
+    updateRaffle.value = {
+        title: raffle.raffle?.title || '',
+        description: raffle.raffle?.description || '',
+        premiums: raffle.raffle?.premiums || '',
+        price: raffle.raffle?.price || 0,
+        endDate: raffle.raffle?.endDate || new Date(),
+    }
 })
 
 </script>
@@ -35,7 +50,7 @@ onMounted( async() => {
             label="Titulo"
             name="title"
             placeholder="Titulo aqui"
-
+            v-model="updateRaffle.title"
             
         />
 
@@ -44,7 +59,7 @@ onMounted( async() => {
             label="Descripcion"
             name="description"
             placeholder="Colocar aqui descripcion"
-            
+            v-model="updateRaffle.description"
         />
 
         <FormKit 
@@ -52,7 +67,7 @@ onMounted( async() => {
             label ="Premios"
             name="premiums"
             placeholder="Colocar Premios aqui"
-        
+            v-model="updateRaffle.premiums"
         />
 
         <FormKit 
@@ -60,6 +75,15 @@ onMounted( async() => {
             label="Precio"
             name="price"
             placeholder="Ej. 80$"
+            v-model="updateRaffle.price"
+        />
+
+        <FormKit 
+            type="date"
+            label="Fecha"
+            name="endDate"
+            placeholder="dd/mm/yyyy"
+            v-model="updateRaffle.endDate"
         />
 
         <FormKit type="submit">Actualizar Sorteo</FormKit>

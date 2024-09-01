@@ -1,4 +1,4 @@
-import type { Raffle, RaffleById, RaffleCreation } from "@/types";
+import type { Raffle, RaffleById, RaffleCreation, PaymentUser } from "@/types";
 import api from '../lib/axios'
 import { isAxiosError } from "axios";
 
@@ -68,3 +68,4 @@ export async function updateRaffle(id: string, formData: RaffleCreation){
         }
     }
 }
+

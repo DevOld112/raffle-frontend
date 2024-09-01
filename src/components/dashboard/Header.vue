@@ -34,7 +34,7 @@ const goBack = () => router.push({ name: 'raffles' });
         <img @click="home" src="../../../public/img/logo.png" class="h-24 w-24 cursor-pointer">
         <p class="text-2xl text-white font-bold">Raffle</p><span class=" text-2xl font-extrabold italic text-teal-400  logo-text">M<span class="text-white">aster</span></span>
     </div>
-    
+
 
     <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center text-base sm:text-lg md:text-xl">
         <p>Bienvenido, <span class="font-bold italic">{{store.user?.name}}</span> </p>

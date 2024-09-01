@@ -1,7 +1,7 @@
 import { inject } from 'vue';
 import { useRouter } from 'vue-router';
 import { createRaffle, deleteRaffle, updateRaffle } from '@/api/RafflesApi';
-import { deleteTicket, getAllTicketsByRaffles } from '@/api/TicketsAPI';
+import { acceptTicket, deleteTicket, getAllTicketsByRaffles } from '@/api/TicketsAPI';
 import { createTicketByRaffle } from '@/api/PublicAPI';
 import type { Toast, RaffleById, RaffleCreation, Ticket, TicketCreation, TicketId } from '@/types';
 import Swal from 'sweetalert2';
@@ -103,6 +103,37 @@ export const raffleServiceHandler = () => {
         }
     }
 
+    async function acceptTicketService(dataId : DataId){
+        try {
+            const result = await Swal.fire({
+                title: '¿Deseas aceptar esta rifa?',
+                text: 'Por favor, verifica que el pago haya sido llegado a tu cuenta bancaria',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, aceptar',
+                cancelButtonText: 'Cancelar'
+            });
+    
+            if (result.isConfirmed) {
+                const  data = await acceptTicket(dataId);
+                toast?.open({
+                    message: 'Ticket aceptado con éxito',
+                    type: 'success'
+                });
+                
+            }
+    
+        } catch (error) {
+            console.log(error);
+            toast?.open({
+                message: 'Ocurrió un error al aceptar el ticket',
+                type: 'error'
+            });
+        }
+    }
+
     async function deleteTicketService(dataId : DataId){
         try {
             const result = await Swal.fire({
@@ -161,6 +192,7 @@ export const raffleServiceHandler = () => {
         createRaffleService,
         deleteRaffleService,
         updateRaffleService,
+        acceptTicketService,
         deleteTicketService,
         createTicket
     }

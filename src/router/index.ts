@@ -57,9 +57,9 @@ const router = createRouter({
       ]
     },
     {
-      path:'/proffit',
+      path:'/usuario',
       name:'proffit',
-      component: () => import('../views/proffits/ProffitLayoutView.vue')
+      component: () => import('../views/user/ProffitLayoutView.vue')
     },
     {
       path: '/raffle/:id/tickets',

@@ -20,13 +20,13 @@ const dataId: RaffleByTicketId = {
 };
 
 
-const cancelTicket = async (dataId: RaffleByTicketId) => await service.deleteTicketService(dataId)
+const cancelTicket = async (dataId: RaffleByTicketId) => await service.deleteTicketService(dataId);
+const acceptTicket = async(dataId: RaffleByTicketId) => await service.acceptTicketService(dataId)
 
-;
 </script>
 
 <template>
-  <tr class="border-b hover:bg-gray-50">
+  <tr class="border-b text-black bg-gray-200 hover:bg-gray-400">
     <td class="py-2 px-4">{{ ticket.document }}</td>
     <td class="py-2 px-4">{{ ticket.name }}</td>
     <td class="py-2 px-4">{{ ticket.email }}</td>
@@ -35,7 +35,7 @@ const cancelTicket = async (dataId: RaffleByTicketId) => await service.deleteTic
     <td class="py-2 px-4">{{ ticket.quantity }}</td>
     <td class="py-2 px-4 font-bold">{{ ticket.paymentReference }}</td>
     <td class="py-2 px-4 flex space-x-2 my-2">
-      <button class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200">
+      <button @click="acceptTicket(dataId)" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200">
         <i class="fas fa-check"></i>
       </button>
       <button @click="cancelTicket(dataId)" class="px-2 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">

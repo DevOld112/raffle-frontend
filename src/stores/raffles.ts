@@ -15,7 +15,8 @@ export const useRaffleStore = defineStore('raffles', () => {
         tickets: [],
         availableQuantity: 0,
         price: 0,
-        totalAmount: 0
+        totalAmount: 0,
+        endDate: new Date()
     });
     const tickets = ref<Ticket[]>([]);
 
@@ -33,7 +34,6 @@ export const useRaffleStore = defineStore('raffles', () => {
     const fetchRaffle = async (id: RaffleById) => {
         try {
             const data = await getRaffleById(id);
-          
             raffle.value = data;
             return raffle;
         } catch (error) {

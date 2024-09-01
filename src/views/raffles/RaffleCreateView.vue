@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { FormKit } from '@formkit/vue';
 import type { RaffleCreation } from '@/types/index';
 import { raffleServiceHandler } from '@/utils/services';
 
@@ -56,7 +55,7 @@ const createRaffleForm = async(formData: RaffleCreation ) => {
 
         <FormKit
             type="date"
-            label="Fecha de su pago"
+            label="Fecha de Finalizacion"
             name="endDate"
         />
 

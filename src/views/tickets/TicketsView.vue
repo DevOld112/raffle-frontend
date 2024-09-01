@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUpdated } from 'vue';
+import { ref, onMounted ,onUpdated} from 'vue';
 import { useRoute } from 'vue-router';
 import { useRaffleStore } from '@/stores/raffles';
 import TicketCard from '@/components/TicketCard.vue';
@@ -14,6 +14,7 @@ const tickets = ref<Ticket[]>([]);
 onMounted(async () => {
     if (id) {
       await store.fetchTickets(id);
+
     }
 });
 
@@ -30,9 +31,9 @@ onUpdated(async() => {
 
     <h1 class="font-medium text-left text-2xl mb-10">Listado de Tickets Activos</h1>
 
-    <div class="overflow-x-auto">
-      <table class="w-full min-w-full bg-white rounded-md text-left border-collapse shadow-md">
-  <thead>
+    <div class="overflow-x-auto rounded-2xl">
+      <table class="w-full min-w-full bg-white  text-left border-collapse shadow-md">
+  <thead >
     <tr class="bg-teal-200 text-gray-700 text-center">
       <th class="py-3 px-4 border-b">Documento</th>
       <th class="py-3 px-4 border-b">Nombre</th>

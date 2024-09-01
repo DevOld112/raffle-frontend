@@ -53,7 +53,7 @@ function formatDateOrFallback(dateString: string | null | undefined): string {
 
 <template>
     <div class="container mx-auto p-6">
-        <div v-if="store.raffle" class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div v-if="store.raffle" class="bg-gray-600 shadow-lg rounded-lg overflow-hidden">
         <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6">
             <h1 class="text-4xl font-extrabold text-white">{{ store.raffle.title }}</h1>
             <p class="text-xl text-white mt-2">{{ store.raffle.description }}</p>
@@ -61,32 +61,32 @@ function formatDateOrFallback(dateString: string | null | undefined): string {
         <div class="p-6">
             <div class="flex flex-col sm:flex-row sm:items-center mb-6">
             <div class="sm:w-1/2">
-                <p class="text-2xl font-semibold text-gray-800 mb-2">Precio:</p>
+                <p class="text-2xl font-semibold mb-2">Precio:</p>
                 <p class="text-3xl font-bold text-blue-600">{{ store.raffle.price }}$</p>
             </div>
             <div class="sm:w-1/2 mt-4 sm:mt-0 sm:text-right">
-                <p class="text-2xl font-semibold text-gray-800 mb-2">Tickets disponibles:</p>
+                <p class="text-2xl font-semibold  mb-2">Tickets disponibles:</p>
                 <p class="text-3xl font-bold text-green-600">{{ store.raffle.availableQuantity }}</p>
             </div>
             </div>
             <div class="border-t border-gray-200 pt-4">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Detalles de la Rifa</h2>
+            <h2 class="text-xl font-semibold  mb-4">Detalles de la Rifa</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800">Total Recaudado</h3>
-                <p class="text-xl font-bold text-gray-600">{{ store.raffle.totalAmount }}$</p>
+                <div class="bg-gray-500 p-4 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold ">Total Recaudado</h3>
+                <p class="text-xl font-bold ">{{ store.raffle.totalAmount }}$</p>
                 </div>
-                <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800">Número de Pedidos</h3>
-                <p class="text-xl font-bold text-gray-600">{{ store.raffle.tickets.length }}</p>
+                <div class="bg-gray-500 p-4 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold ">Número de Pedidos</h3>
+                <p class="text-xl font-bold ">{{ store.raffle.tickets.length }}</p>
                 </div>
-                <div class="bg-gray-100 p-4 rounded-lg shadow-md col-span-2">
-                    <h3 class="text-lg font-semibold text-gray-800">Premios</h3>
-                    <p class="text-gray-600">{{ store.raffle.premiums }}</p>
+                <div class="bg-gray-500 p-4 rounded-lg shadow-md col-span-2">
+                    <h3 class="text-lg font-semibold ">Premios</h3>
+                    <p class="">{{ store.raffle.premiums }}</p>
                 </div>
-                <div class="bg-gray-100 p-4 rounded-lg shadow-md col-span-2">
-                    <h3 class="text-lg font-semibold text-gray-800">Fecha de Finalizacion</h3>
-                    <p class="text-gray-600">{{ formatDateOrFallback(store.raffle.endDate)  }}</p>
+                <div class="bg-gray-500 p-4 rounded-lg shadow-md col-span-2">
+                    <h3 class="text-lg font-semibold ">Fecha de Finalizacion</h3>
+                    <p class="">{{ store.raffle.endDate }}</p>
                 </div>
             </div>
             </div>
