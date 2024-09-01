@@ -1,32 +1,42 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, Transition, Ref } from 'vue';
 import faqs from '../data/faqs';
 
-    const isOpen = ref(null);
 
-    function toggleFaq(faqId) {
-    isOpen.value = isOpen.value === faqId ? null : faqId;
-    }
+interface Faq {
+  id: number;
+  title: string;
+  description: string;
+}
 
-    const beforeEnter = (el) => {
-    el.style.maxHeight = '0';
-    el.style.opacity = '0';
-    };
+// Initialize state
+const isOpen = ref<number | null>(null);
 
-    const enter = (el, done) => {
-    el.offsetHeight; // trigger reflow
-    el.style.transition = 'max-height 1.5s ease, opacity 1.5s ease';
-    el.style.maxHeight = '500px'; // Adjust according to your content
-    el.style.opacity = '1';
-    done();
-    };
+// Function to toggle FAQ
+function toggleFaq(faqId: number): void {
+  isOpen.value = isOpen.value === faqId ? null : faqId;
+}
 
-    const leave = (el, done) => {
-    el.style.transition = 'max-height 1.5s ease, opacity 1.5s ease';
-    el.style.maxHeight = '0';
-    el.style.opacity = '0';
-    done();
-    };
+// Animation hooks
+const beforeEnter = (el: HTMLElement) => {
+  el.style.maxHeight = '0';
+  el.style.opacity = '0';
+};
+
+const enter = (el: HTMLElement, done: () => void) => {
+  el.offsetHeight; // trigger reflow
+  el.style.transition = 'max-height 1.5s ease, opacity 1.5s ease';
+  el.style.maxHeight = '500px';
+  el.style.opacity = '1';
+  done();
+};
+
+const leave = (el: HTMLElement, done: () => void) => {
+  el.style.transition = 'max-height 1.5s ease, opacity 1.5s ease';
+  el.style.maxHeight = '0';
+  el.style.opacity = '0';
+  done();
+};
 </script>
 <template>
   <!-- Questions Section Start -->
@@ -76,16 +86,16 @@ import faqs from '../data/faqs';
 </template>
 
 <style scoped>
-/* Transition styles for the FAQ content */
+
 .faq-transition-enter-active, .faq-transition-leave-active {
   transition: max-height 1.5s ease, opacity 1.5s ease;
 }
-.faq-transition-enter, .faq-transition-leave-to /* .faq-transition-leave-active in <2.1.8 */ {
+.faq-transition-enter, .faq-transition-leave-to {
   max-height: 0;
   opacity: 0;
 }
 .faq-transition-enter-to, .faq-transition-leave {
-  max-height: 500px; /* Adjust according to your content */
+  max-height: 500px; 
   opacity: 1;
 }
 </style>
