@@ -16,15 +16,15 @@ const store = usePublicStore()
 
 const settings = ref({
     itemsToShow: 2,
-    snapAlign: 'center',
+    snapAlign: 'center' as const,
     breakpoints: {
         700: {
         itemsToShow: 3.5,
-        snapAlign: 'center',
+        snapAlign: 'center' as const,
         },
         1024: {
         itemsToShow: 5,
-        snapAlign: 'start',
+        snapAlign: 'start' as const,
         },
     },
 });
