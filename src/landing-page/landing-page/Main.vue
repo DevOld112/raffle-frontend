@@ -17,7 +17,16 @@ const store = usePublicStore()
 const settings = ref({
     itemsToShow: 2,
     snapAlign: 'center' as const,
-
+    breakpoints: {
+        700: {
+            itemsToShow: 3.5,
+            snapAlign: 'center' as const,
+        },
+        1024: {
+            itemsToShow: 5,
+            snapAlign: 'start' as const,
+        },
+    },
 });
 
 onMounted(() => {
@@ -32,13 +41,13 @@ onMounted(() => {
 
     
     <Carousel
-        v-bind="settings"
-        :perPage="1"
+
+        :perPage="2"
         :autoplay="4000"
         :wrap-around="true"
         :loop="true"
         :navigationEnabled="true"
-        :breakpoints="breakpoints"
+        
     >
         <Slide v-for="raffle in store.raffles" :key="raffle._id">
             <RaffleSection :raffle="raffle" />
