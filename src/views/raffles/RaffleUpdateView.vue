@@ -14,7 +14,7 @@ const updateRaffle = ref<RaffleUpdate>({
         title: '',
         description: '',
         premiums: '',
-        price: '',
+        price: 0,
         endDate: ''
 })
 
@@ -75,7 +75,7 @@ onMounted( async() => {
             label="Precio"
             name="price"
             placeholder="Ej. 80$"
-            v-model="updateRaffle.price"
+            v-model.string="updateRaffle.price"
         />
 
         <FormKit 
