@@ -2,13 +2,14 @@
 import faqs from "../data/faqs";
 import { ref } from "vue";
 
+
+const isOpen = ref<number | null>(1);
+
 function toggleFaq(faqId: number) {
   isOpen.value = isOpen.value === faqId ? null : faqId;
 }
-
-let isOpen = ref(1);
-
 </script>
+
 <template>
   <!-- Questions Section Start -->
   <div id="faq" class="container shadow-xl rounded-lg px-5 mx-auto">
