@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import CreateTicketForm from '@/landing-page/landing-page/sections/RaffleSection/CreateTicketForm.vue'
+import CreateTicketForm from '@/landing-page/landing-page/sections/RaffleSection/CreateTicketForm.vue';
 import { usePublicStore } from '@/stores/public';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import type { RaffleById } from '@/types/index';
 import { formatDate } from '../../../../helper/date';
 
-const props = defineProps<{
-  raffle: {
+interface Raffle {
     _id: string;
     title: string;
     description: string;
@@ -18,21 +17,22 @@ const props = defineProps<{
     price: number;
     totalAmount: number;
     endDate: Date;
-  };
-}>();
+}
 
 const route = useRoute();   
 const store = usePublicStore();
 
-const raffleId = route.params.id
-const id: RaffleById | any = raffleId;
-const raffle = ref({});
+const raffleId = route.params.id as RaffleById; // Asume que 'id' es del tipo RaffleById
+const raffle = ref<Raffle | null>(null); // Inicializa como null para manejar estados de carga
 
 onMounted(async () => {
-    console.log(store.raffle.price)
     if (raffleId) {
-        await store.fetchPublicRaffle(id);
-        raffle.value = store.fetchPublicRaffle(id)
+        try {
+            await store.fetchPublicRaffle(raffleId); // Llama a la función que recupera los datos
+            raffle.value = store.raffle; // Asigna el valor del store al ref
+        } catch (error) {
+            console.error('Error fetching raffle:', error);
+        }
     } else {
         console.error('No raffle ID found in route parameters');
     }
