@@ -6,6 +6,20 @@ import { useRoute } from 'vue-router';
 import type { RaffleById } from '@/types/index';
 import { formatDate } from '../../../../helper/date';
 
+const props = defineProps<{
+  raffle: {
+    _id: string;
+    title: string;
+    description: string;
+    premiums: string;
+    quantity: number;
+    tickets: any[];
+    availableQuantity: number;
+    price: number;
+    totalAmount: number;
+    endDate: Date;
+  };
+}>();
 
 const route = useRoute();   
 const store = usePublicStore();
