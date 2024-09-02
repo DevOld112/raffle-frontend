@@ -7,7 +7,7 @@ import { defineProps, onMounted, ref, computed } from 'vue';
 
 const route = useRoute()
 const raffleService = raffleServiceHandler()
-const id = route.params.id as TicketId
+const id = route.params.id as TicketId | string
 const props = defineProps<{
     raffle: {
         price: number;
