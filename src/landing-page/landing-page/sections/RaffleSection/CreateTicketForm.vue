@@ -7,14 +7,19 @@ import { defineProps, onMounted, ref, computed } from 'vue';
 
 const route = useRoute()
 const raffleService = raffleServiceHandler()
-const id: TicketId = route.params.id
-const props = defineProps<({
-    raffle:{
-        price: Number
+const id = route.params.id as string
+const props = defineProps<{
+    raffle: {
+        price: number;
+        phone: string;
+        bankEntity: string;
+        accountBank: string;
+        binanceID: string;
     }
-})>()
+}>();
 const quantity = ref(0)
-const totalPrice = computed(() => (props.raffle.price * quantity.value).toFixed(2))
+const totalPrice = computed(() => (Number(props.raffle.price) * quantity.value).toFixed(2));
+
 
 
 const submitPayment = async(formData: TicketCreation ) => await raffleService.createTicket(id, formData)

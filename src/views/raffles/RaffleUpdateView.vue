@@ -75,7 +75,7 @@ onMounted( async() => {
             label="Precio"
             name="price"
             placeholder="Ej. 80$"
-            v-model.string="updateRaffle.price"
+            v-model="updateRaffle.price"
         />
 
         <FormKit 
