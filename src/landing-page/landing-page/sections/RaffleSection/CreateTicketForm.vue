@@ -7,7 +7,7 @@ import { defineProps, onMounted, ref, computed } from 'vue';
 
 const route = useRoute()
 const raffleService = raffleServiceHandler()
-const id = route.params.id as string
+const id = route.params.id as TicketId
 const props = defineProps<{
     raffle: {
         price: number;
@@ -17,7 +17,12 @@ const props = defineProps<{
         binanceID: string;
     }
 }>();
-const quantity = ref(0)
+const quantity = ref(0);
+
+const quantityString = computed({
+    get: () => quantity.value.toString(),
+    set: (value: string) => quantity.value = Number(value)
+});
 const totalPrice = computed(() => (Number(props.raffle.price) * quantity.value).toFixed(2));
 
 
@@ -104,7 +109,7 @@ const submitPayment = async(formData: TicketCreation ) => await raffleService.cr
                         label="Cantidad de boletos a comprar"
                         name="quantity"
                         placeholder="Cantidad mínima permitida: 2"
-                        v-model="quantity"
+                        v-model.number="quantityString"
                     />
                     
                     <p class="mt-2 ">Precio unitario del boleto: {{ props.raffle.price.toFixed(2) }}USD</p>
