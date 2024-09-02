@@ -5,26 +5,15 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import type { RaffleById } from '@/types/index';
 import { formatDate } from '../../../../helper/date';
+import type{ Raffle } from '@/types/index';
 
-interface Raffle {
-    _id: string;
-    title: string;
-    description: string;
-    premiums: string;
-    quantity: number;
-    tickets: any[];
-    availableQuantity: number;
-    price: number;
-    totalAmount: number;
-    endDate: Date;
-}
 
 const route = useRoute();   
 const store = usePublicStore();
 
 const raffleId = route.params.id
 const id: RaffleById | any = raffleId;
-const raffle = ref<Raffle>({
+const rafflePublic = ref<Raffle>({
     _id: '',
     title: '',
     description: '',
@@ -35,13 +24,17 @@ const raffle = ref<Raffle>({
     price: 0,
     totalAmount: 0,
     endDate: new Date(), 
+    bankEntity: '',
+    accountBank: '',
+    binanceID: '',
+    phone: ''
 });
 
 onMounted(async () => {
     
     if (raffleId) {
         const fetchedRaffle =  await store.fetchPublicRaffle(id);
-        raffle.value = fetchedRaffle 
+        
     } else {
         console.error('No raffle ID found in route parameters');
     }

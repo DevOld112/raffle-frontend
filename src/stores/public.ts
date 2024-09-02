@@ -16,7 +16,11 @@ export const usePublicStore = defineStore('public', () => {
         availableQuantity: 0,
         price: 0,
         totalAmount: 0,
-        endDate : new Date()
+        endDate : new Date(),
+        bankEntity: '',
+        accountBank: '',
+        binanceID: '',
+        phone: ''
     });
     const tickets = ref<Ticket[]>([]);
 

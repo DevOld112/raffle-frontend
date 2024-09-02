@@ -29,7 +29,10 @@ export const rafflesSchema = z.object({
     price: z.number(),
     totalAmount: z.number(),
     endDate: z.date(),
-
+    bankEntity: z.string(),
+    accountBank: z.string(),
+    binanceID: z.string(),
+    phone: z.string(),
 })
 
 /** Tickets */
