@@ -14,7 +14,7 @@ const updateRaffle = ref<RaffleUpdate>({
         title: '',
         description: '',
         premiums: '',
-        price: 0,
+        price: '',
         endDate: ''
 })
 
@@ -28,7 +28,7 @@ onMounted( async() => {
         title: raffle.raffle?.title || '',
         description: raffle.raffle?.description || '',
         premiums: raffle.raffle?.premiums || '',
-        price: raffle.raffle?.price || 0,
+        price: raffle.raffle?.price.toString() || '0',
         endDate: (raffle.raffle?.endDate ? new Date(raffle.raffle.endDate).toISOString().split('T')[0] : ''),
     }
 })

@@ -72,7 +72,7 @@ export type RaffleUpdate = {
     title: string;
     description: string;
     premiums: string;
-    price: number;
+    price: string;
     endDate: string; 
 };
 

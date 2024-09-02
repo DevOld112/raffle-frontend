@@ -7,7 +7,19 @@ import { defineProps, onMounted, ref, computed } from 'vue';
 
 const route = useRoute()
 const raffleService = raffleServiceHandler()
-const id = route.params.id as TicketId | string
+
+let id: TicketId;
+
+if (typeof route.params.id === 'string') {
+    id = route.params.id as unknown as TicketId;
+} else if (Array.isArray(route.params.id) && route.params.id.length > 0) {
+    id = route.params.id[0] as unknown as TicketId;
+} else {
+    throw new Error('Invalid route parameter for id');
+}
+
+
+
 const props = defineProps<{
     raffle: {
         price: number;
