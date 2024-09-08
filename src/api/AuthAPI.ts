@@ -23,6 +23,7 @@ export async function getUser(){
     try {
         const url = '/auth/user'
         const { data } = await api.get(url)
+
         return data;
 
     } catch (error) {

@@ -86,7 +86,7 @@ function formatDateOrFallback(date: Date | string | null | undefined): string {
                         </div>
                         <div class="bg-gray-500 p-4 rounded-lg shadow-2xl col-span-2">
                             <h3 class="text-lg font-semibold ">Premios</h3>
-                            <p class="">{{ store.raffle.premiums }}</p>
+                            <p class="whitespace-pre-line">{{ store.raffle.premiums }}</p>
                         </div>
 
                         <div class="bg-gray-500 p-4 rounded-lg shadow-2xl col-span-2">

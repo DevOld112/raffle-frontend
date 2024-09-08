@@ -34,7 +34,7 @@ const acceptTicket = async(dataId: RaffleByTicketId) => await service.acceptTick
     <td class="py-2 px-4">{{ ticket.address }}</td>
     <td class="py-2 px-4">{{ ticket.quantity }}</td>
     <td class="py-2 px-4 font-bold">{{ ticket.paymentReference }}</td>
-    <td class="py-2 px-4 flex space-x-2 my-2">
+    <td class="py-2 px-4 flex my-2 justify-center space-x-4">
       <button @click="acceptTicket(dataId)" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200">
         <i class="fas fa-check"></i>
       </button>

@@ -36,59 +36,67 @@ onMounted( async() => {
 </script>
 
 <template>
-        <h1 class="mt-10 text-4xl font-bold text-center">Modificar Sorteo</h1>
+        <div class="p-4 space-y-5 rounded-lg bg-gray-600 text-xl">
         
-        <FormKit
-            id="loginForm"
-            type="form"
-            :actions="false"
-            @submit="updateRaffleForm"
-        >
+        <div class="w-full p-6 bg-gray-600 rounded-lg shadow-md my-5">
+        <fieldset class="border  border-gray-300 rounded-md p-4">
+            <legend class="ml-3 text-lg p-2  bg-gray-500 font-semibold rounded-md">
+                Modificacion de Sorteo
+            </legend>
+        
+                <FormKit
+                    id="loginForm"
+                    type="form"
+                    :actions="false"
+                    @submit="updateRaffleForm"
+                >
 
-        <FormKit
-            type="text"
-            label="Titulo"
-            name="title"
-            placeholder="Titulo aqui"
-            v-model="updateRaffle.title"
-            
-        />
+                <FormKit
+                    type="text"
+                    label="Titulo"
+                    name="title"
+                    placeholder="Titulo aqui"
+                    v-model="updateRaffle.title"
+                    
+                />
 
-        <FormKit 
-            type="textarea"
-            label="Descripcion"
-            name="description"
-            placeholder="Colocar aqui descripcion"
-            v-model="updateRaffle.description"
-        />
+                <FormKit 
+                    type="textarea"
+                    label="Descripcion"
+                    name="description"
+                    placeholder="Colocar aqui descripcion"
+                    v-model="updateRaffle.description"
+                />
 
-        <FormKit 
-            type="text"
-            label ="Premios"
-            name="premiums"
-            placeholder="Colocar Premios aqui"
-            v-model="updateRaffle.premiums"
-        />
+                <FormKit 
+                    type="textarea"
+                    label ="Premios"
+                    name="premiums"
+                    placeholder="Colocar Premios aqui"
+                    v-model="updateRaffle.premiums"
+                />
 
-        <FormKit 
-            type="number"
-            label="Precio"
-            name="price"
-            placeholder="Ej. 80$"
-            v-model="updateRaffle.price"
-        />
+                <FormKit 
+                    type="number"
+                    label="Precio"
+                    name="price"
+                    placeholder="Ej. 80$"
+                    v-model="updateRaffle.price"
+                />
 
-        <FormKit 
-            type="date"
-            label="Fecha"
-            name="endDate"
-            placeholder="dd/mm/yyyy"
-            v-model="updateRaffle.endDate"
-        />
+                <FormKit 
+                    type="date"
+                    label="Fecha"
+                    name="endDate"
+                    placeholder="dd/mm/yyyy"
+                    v-model="updateRaffle.endDate"
+                />
 
-        <FormKit type="submit">Actualizar Sorteo</FormKit>
+                <FormKit type="submit">Actualizar Sorteo</FormKit>
 
-    </FormKit>
-    
+            </FormKit>
+            </fieldset>
+        </div>
+    </div>
         
 </template>

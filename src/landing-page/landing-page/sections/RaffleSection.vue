@@ -14,7 +14,7 @@ const onViewDetails = () => router.push({ name: 'rafflePublic', params: { id: pr
 </script>
 
 <template>
-    <div class="raffle-card w-full bg-slate-900 shadow-2xl rounded-2xl overflow-hidden p-6 mx-auto my-6 max-w-sm">
+    <div id="raffles" class="raffle-card w-full bg-slate-900 shadow-2xl rounded-2xl overflow-hidden p-6 mx-auto my-6 max-w-sm">
       
       <!-- Imagen en la parte superior -->
       <img class="w-full  object-cover rounded-t-lg mb-4" src="/images/logo-firefox.svg" alt="Imagen del Sorteo">

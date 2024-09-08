@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { getUser } from '@/api/AuthAPI'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,7 @@ const router = createRouter({
       path: '/panel',
       name: 'panel',
       component: () => import('../views/raffles/RafflesLayoutView.vue'),
+      meta: { requiresAuth: true },
       children: [
         {
           path: 'raffles',
@@ -59,17 +61,24 @@ const router = createRouter({
     {
       path:'/usuario',
       name:'proffit',
+      meta: { requiresAuth: true },
       component: () => import('../views/user/ProffitLayoutView.vue')
     },
     {
-      path: '/raffle/:id/tickets',
+      path: '/raffle/:id/',
       name: 'tickets',
+      meta: { requiresAuth: true },
       component: () => import('../views/tickets/TicketsLayoutView.vue'),
       children: [
         {
-          path:'all',
+          path:'tickets',
           name: 'allTickets',
           component: () => import('../views/tickets/TicketsView.vue')
+        },
+        {
+          path: 'clients',
+          name: 'clients',
+          component: () => import('../views/raffles/RafflesClientView.vue')
         }
       ]
     },
@@ -80,5 +89,27 @@ const router = createRouter({
     }
   ]
 })
+
+router.beforeEach( async(to, from, next) => {
+
+  const requiresAuth = to.matched.some(url => url.meta.requiresAuth)
+
+  if(requiresAuth){
+    try {
+      const { data } = await getUser()
+    
+        next()
+      
+    } catch (error) {
+      next({name:'login'})
+    }
+  } else {
+    next()
+  }
+
+
+})
+
+
 
 export default router

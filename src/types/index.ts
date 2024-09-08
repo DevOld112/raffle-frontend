@@ -52,7 +52,8 @@ export const ticketSchema = z.object({
     status: z.object({
         PENDING: z.string(),
         COMPLETED: z.string()
-    })
+    }),
+    ticketNumber: z.array(z.number())
 })
 
 
@@ -84,7 +85,7 @@ export type RaffleUpdate = {
 export type Ticket = z.infer<typeof ticketSchema>
 
 export type TicketByRaffle = string | string[];
-export type TicketCard = Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' | '_id' | 'status' >
+export type TicketCard = Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' | '_id' | 'status' | 'ticketNumber' >
 export type TicketCreation= Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' >
 export type TicketId = Pick<Ticket, '_id'>
 

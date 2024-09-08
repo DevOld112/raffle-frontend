@@ -82,7 +82,7 @@ function formatDateOrFallback(dateString: string | null | undefined): string {
                 </div>
                 <div class="bg-gray-500 p-4 rounded-lg shadow-md col-span-2">
                     <h3 class="text-lg font-semibold ">Premios</h3>
-                    <p class="">{{ store.raffle.premiums }}</p>
+                    <p  class="whitespace-pre-line">{{ store.raffle.premiums }}</p>
                 </div>
                 <div class="bg-gray-500 p-4 rounded-lg shadow-md col-span-2">
                     <h3 class="text-lg font-semibold ">Fecha de Finalizacion</h3>
@@ -92,7 +92,7 @@ function formatDateOrFallback(dateString: string | null | undefined): string {
             </div>
             <div class="mt-6 text-center">
                     <button @click="goToTickets" class="bg-yellow-500 text-white w-full font-bold px-6 py-3 rounded-lg shadow-md hover:bg-yellow-600 transition duration-300">
-                        Ver Detalles
+                        Ver Tickets Pendientes
                     </button>
             </div>
         </div>

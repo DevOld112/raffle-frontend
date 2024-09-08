@@ -1,18 +1,31 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { useRouter } from 'vue-router';
 
-library.add(faFacebook, faTwitter, faInstagram);
+    const router = useRouter()
+
+    const login = () => router.push({name: 'login'})
+
+library.add(faFacebook, faTwitter, faInstagram, faSignInAlt);
 
 </script>
 
 <template>
     <footer class="bg-gray-900 text-white p-6 text-center space-y-2 md:space-y-4 flex items-center justify-between ">
         <div class="lg:flex gap-10 fa-2x hidden">
-            <font-awesome-icon :icon="['fab', 'facebook']" />
-            <font-awesome-icon :icon="['fab', 'twitter']" />
-            <font-awesome-icon :icon="['fab', 'instagram']" />
+            <a href="https://www.facebook.com/soniasilvashema" target="_blank" class="hover:text-teal-400">
+                <font-awesome-icon :icon="['fab', 'facebook']" />
+            </a>
+            <a href="https://www.instagram.com/chefsoniasilvacursos/" target="_blank" class="hover:text-teal-400">
+                <font-awesome-icon :icon="['fab', 'instagram']" class="hover:text-teal-400 cursor-pointer transition ease-in 0.2s" />
+            </a>
+            <a>
+                <font-awesome-icon :icon="['fas', 'sign-in-alt']" class="hover:text-teal-400 cursor-pointer transition ease-in 0.2s text-2xl hover:fa-4x" @click="login" />
+            </a>
+            
         </div>
 
         
@@ -26,6 +39,7 @@ library.add(faFacebook, faTwitter, faInstagram);
                 
             </div>
         
+ 
         
     </footer>
 </template>

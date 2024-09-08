@@ -29,7 +29,7 @@ onUpdated(async() => {
 <template>
   <div v-if="store.tickets.length > 0">
 
-    <h1 class="font-medium text-left text-2xl mb-10">Listado de Tickets Activos</h1>
+    <h1 class="font-medium text-left text-2xl mb-10">Listado de Pedidos Activos</h1>
 
     <div class="overflow-x-auto rounded-2xl">
       <table class="w-full min-w-full bg-white  text-left border-collapse shadow-md">
@@ -54,7 +54,6 @@ onUpdated(async() => {
   </tbody>
 </table>
     </div>
-
   </div>
 
   <div class="flex items-center justify-center my-20" v-else>
@@ -63,15 +62,15 @@ onUpdated(async() => {
 </template>
 
 <style>
-/* Escalar la fuente y el espaciado en dispositivos pequeños */
+
 @media (max-width: 640px) {
   th, td {
     padding: 8px;
-    font-size: 0.875rem; /* Tamaño de fuente más pequeño */
+    font-size: 0.875rem; 
   }
   
   button {
-    font-size: 1.2rem; /* Ajuste del tamaño del icono en botones */
+    font-size: 1.2rem; 
   }
 }
 </style>

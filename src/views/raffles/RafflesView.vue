@@ -16,7 +16,7 @@ onMounted(() => {
 
     <h1 class="font-medium text-left text-m ">Listado de Sorteos Activos</h1>
 
-    <div v-if="store.raffles.length > 0" class="raffles-grid grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div v-if="store.raffles.length > 0" class="raffles-grid  grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <RaffleCard
         v-for="raffle in store.raffles"
         :key="raffle.id"

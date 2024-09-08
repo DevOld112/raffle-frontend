@@ -12,9 +12,16 @@ const createRaffleForm = async(formData: RaffleCreation ) => {
 </script>
 
 <template>
-        <h1 class="mt-10 text-4xl font-bold text-center">Crear Sorteo</h1>
+    
+    <div class="p-4 space-y-5 rounded-lg bg-gray-600 text-xl">
         
-        <FormKit
+        <div class="w-full p-6 bg-gray-600 rounded-lg shadow-md my-5">
+        <fieldset class="border  border-gray-300 rounded-md p-4">
+            <legend class="ml-3 text-lg p-2  bg-gray-500 font-semibold rounded-md">
+                Nuevo Sorteo
+            </legend>
+
+            <FormKit
             id="loginForm"
             type="form"
             :actions="false"
@@ -39,7 +46,7 @@ const createRaffleForm = async(formData: RaffleCreation ) => {
         />
 
         <FormKit 
-            type="text"
+            type="textarea"
             label ="Premios"
             name="premiums"
             placeholder="Colocar Premios aqui"
@@ -62,6 +69,14 @@ const createRaffleForm = async(formData: RaffleCreation ) => {
         <FormKit type="submit">Crear Sorteo</FormKit>
 
     </FormKit>
+        </fieldset>
+            
+        
+            
+ 
     
+        </div>
+    </div>
+        
         
 </template>

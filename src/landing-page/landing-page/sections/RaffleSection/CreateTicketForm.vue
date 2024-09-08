@@ -122,6 +122,7 @@ const submitPayment = async(formData: TicketCreation ) => await raffleService.cr
                         name="quantity"
                         placeholder="Cantidad mínima permitida: 2"
                         v-model.number="quantityString"
+                        min="2"
                     />
                     
                     <p class="mt-2 ">Precio unitario del boleto: {{ props.raffle.price.toFixed(2) }}USD</p>

@@ -31,6 +31,30 @@ export async function getAllTicketsByRaffles(raffleId: TicketByRaffle){
     }
 }
 
+export async function getAllTicketsByRafflesAccepted(raffleId: TicketByRaffle){
+    try {
+        const rafflePending = []
+        const url = `/raffle/${raffleId}/ticket`
+        const { data } = await api.get(url)
+        console.log(data)
+        
+        for(let i = 0; i < data.length; i++){
+            if(data[i].status === 'completed'){
+            rafflePending.push(data[i])
+            }
+        }
+
+        
+        
+        return rafflePending;
+
+    } catch (error) {
+        if(isAxiosError(error) && error.response){
+            throw new Error(error.response.data.error)
+        }
+    }
+}
+
 export async function deleteTicket({raffleId, ticketId} : Pick<TicketAPI, 'raffleId'|'ticketId'>){
     try {
         const url = `/raffle/${raffleId}/ticket/${ticketId}`
