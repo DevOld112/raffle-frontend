@@ -26,12 +26,12 @@ const acceptTicket = async(dataId: RaffleByTicketId) => await service.acceptTick
 </script>
 
 <template>
-  <tr class="border-b text-black bg-gray-200 hover:bg-gray-400">
+  <tr class="border-b  font-bold bg-slate-500 hover:bg-gray-400">
     <td class="py-2 px-4">{{ ticket.document }}</td>
     <td class="py-2 px-4">{{ ticket.name }}</td>
     <td class="py-2 px-4">{{ ticket.email }}</td>
     <td class="py-2 px-4">{{ ticket.phone }}</td>
-    <td class="py-2 px-4">{{ ticket.address }}</td>
+    <!-- <td class="py-2 px-4">{{ ticket.address }}</td>-->
     <td class="py-2 px-4">{{ ticket.quantity }}</td>
     <td class="py-2 px-4 font-bold">{{ ticket.paymentReference }}</td>
     <td class="py-2 px-4 flex my-2 justify-center space-x-4">

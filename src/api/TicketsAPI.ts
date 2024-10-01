@@ -1,4 +1,4 @@
-import type { Raffle, RaffleById, Ticket, TicketByRaffle } from "@/types";
+import type { Raffle, RaffleById, Ticket, TicketByRaffle, TicketNumber } from "@/types";
 import api from '../lib/axios'
 import { isAxiosError } from "axios";
 
@@ -72,6 +72,20 @@ export async function acceptTicket({raffleId, ticketId} : Pick<TicketAPI, 'raffl
     try {
         const url = `/raffle/${raffleId}/ticket/${ticketId}`
         const { data } = await api.post<string>(url)
+        return data
+    } catch (error) {
+        console.log(error)
+        if(isAxiosError(error) && error.response){
+            throw new Error(error.response.data.error)
+        }
+    }
+}
+
+export async function updateTicketNumbers({raffleId, ticketId} : Pick<TicketAPI, 'raffleId'|'ticketId'>, formData: TicketNumber){
+    try {
+        const url = `/raffle/${raffleId}/ticket/${ticketId}/ticketsNumbers`
+        const { data } = await api.post<string>(url, formData)
+        console.log(data)
         return data
     } catch (error) {
         console.log(error)

@@ -26,11 +26,11 @@ const goBack = () => router.push({ name: 'raffles' });
 
 <header class="bg-gray-800 text-white p-4 flex justify-between items-center ">
     <div class="lg:flex items-center">
-        <img @click="home" src="../../../public/img/logo.png" class="h-24 w-24 cursor-pointer">
-        <p class="text-2xl text-white font-bold">RifasGanadoras</p><span class=" text-2xl font-extrabold italic text-teal-400  logo-text">PC<span class="text-white"></span></span>
+        <img @click="home" src="../../../public/img/logoSonia.png" alt="imagen de logo" class="h-24 w-24 cursor-pointer">
+        
     </div>
 
-    <div v-if="userLogin" class="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center text-base sm:text-lg md:text-xl">
+    <div v-if="userLogin" class="flex flex-col  sm:flex-row gap-2 sm:gap-6 items-center text-base sm:text-lg md:text-xl">
         <p>Bienvenido, <span class="font-bold italic">{{ store.user?.name }}</span></p>
 
         <button v-if="route.name !== 'proffit'" @click="proffit" class="text-white bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded-lg font-bold transition-colors duration-300">

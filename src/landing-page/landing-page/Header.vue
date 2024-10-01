@@ -18,8 +18,8 @@
     <div class="container rounded-2xl mx-auto p-2">
         <header class="flex justify-between py-12 items-center">
             <div class="flex items-center  ">
-        <img @click="home" src="../../../public/img/logo.png" class="h-24 w-24 cursor-pointer">
-        <p class="text-2xl  font-bold">RifasGanadoras</p><span class=" text-2xl font-extrabold italic text-teal-400  logo-text">PC<span class="text-white"></span></span>
+        <img @click="home" src="../../../public/img/logoSonia.png" class="h-48 w-48 cursor-pointer">
+        
     </div>
             
             <nav class="flex justify-end flex-col md:flex-row">
@@ -53,7 +53,7 @@
                 </div>
                 <ul class="uppercase text-white text-md tracking-widest items-center flex flex-col mt-14">
                     <li class="hover:text-theme-secondary transition duration-200 py-4 border-t border-b border-theme-grayish-blue w-full text-center">
-                        <a  @click="toggleMobileNav()" href="#features">¿Quienes Somos?</a>
+                        <a  @click="login" href="#features">¿Quienes Somos?</a>
                     </li>
                     <li class="hover:text-theme-secondary transition duration-200 py-4 border-b border-theme-grayish-blue w-full text-center">
                         <a  @click="toggleMobileNav()" href="#faq">Como adquirir una Rifa</a>

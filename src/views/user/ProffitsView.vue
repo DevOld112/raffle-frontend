@@ -6,7 +6,7 @@
 
 <template>
     <div class="max-w p-6 bg-gray-600 shadow-lg rounded-lg mt-10">
-      <h3 class="text-2xl font-bold mb-6 ">Resumen de Ganancias</h3>
+      <h3 class="text-2xl font-bold mb-6 text-center lg:text-left">Resumen de Ganancias</h3>
   
       <!-- Ganancia por Sorteo -->
       <div class="mb-4 p-4 bg-gray-500 rounded-lg shadow-md">

@@ -21,7 +21,7 @@ const goBack = () => {
 </script>
 
 <template>
-    <div>
+    <div class="mb-10">
         <header class=" p-4 space-y-5">
             <h1 class="text-4xl text-center font-bold">Panel de Administración</h1>
 

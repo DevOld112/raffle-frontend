@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { getAllRaffles, getRaffleById } from '@/api/RafflesApi';
 import type { Raffle, RaffleById, Ticket, TicketByRaffle, TicketCard } from '@/types';
-import { getAllTicketsByRaffles, getAllTicketsByRafflesAccepted } from '@/api/TicketsAPI';
+import { getAllTicketsByRaffles, getAllTicketsByRafflesAccepted, updateTicketNumbers } from '@/api/TicketsAPI';
 
 export const useRaffleStore = defineStore('raffles', () => {
     const raffles = ref<Raffle[]>([]);
@@ -66,6 +66,7 @@ export const useRaffleStore = defineStore('raffles', () => {
         }
     };
 
+  
 
 
     return {
@@ -75,6 +76,7 @@ export const useRaffleStore = defineStore('raffles', () => {
         fetchRaffles,
         fetchRaffle,
         fetchTickets,
-        fetchTicketsAccepted
+        fetchTicketsAccepted,
+
     };
 });

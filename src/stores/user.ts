@@ -10,13 +10,10 @@ export const useUserStore = defineStore('user', () => {
     const getUserInterface = async() => {
         try {
             const data = await getUser()
-
             user.value = data
-
-
             return user;
         } catch (error) {
-            
+            console.log(error)
         }
     }
 

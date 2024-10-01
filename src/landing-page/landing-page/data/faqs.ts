@@ -12,13 +12,13 @@ interface FAQ {
     },
     {
       id: 2,
-      title: "¿Cómo puedo comprar boletos para una rifa?",
-      description: "Para comprar boletos para una rifa, visita nuestra plataforma y explora las rifas disponibles. Selecciona la rifa en la que deseas participar y completa el formulario de compra de boletos con tu información personal y detalles de pago. Una vez que se confirme tu pago, recibirás un correo electrónico con el número de tu boleto y la fecha del sorteo. También puedes verificar el estado de tus boletos y los detalles del sorteo desde tu cuenta en nuestra plataforma.",
+      title: "¿Como Puedo comprar mis Boletos?",
+      description: "Ingresa en el link de la biografía del instagram @rifasganadoraspc y selecciona la cantidad de numeros que deseas adquirir, siendo 2  Nros. La cantidad de compra Mínima. Realiza el Pago móvilcon los datos y monto  allí indicado y llena el formulario de compra colocando tus datos personas y nro. De referencia bancaria de tu compra. Verifica 2 veces que coloques correctamente el nro de tlf y el correo. En menos de 24 horas recibirás vía correo electrónico tus nros asignados.",
     },
     {
       id: 3,
       title: "¿Cómo se realizan los sorteos?",
-      description: "Los sorteos se realizan de manera transparente y justa utilizando un sistema automatizado. Una vez que finaliza la venta de boletos, se lleva a cabo el sorteo en la fecha programada. Los números de los boletos se seleccionan al azar, y los ganadores se determinan en base a los números seleccionados. Los resultados del sorteo se publican en nuestra plataforma y se envían por correo electrónico a los ganadores junto con los detalles sobre cómo reclamar sus premios.",
+      description: "Se realizan a través de la plataforma de la Plataforma de la Lotería del Chance en sus horarios y fechas estipuladas para cada sorteo. Por lo general hay una fecha colocada pero puede rodarse un poco si no se logra vender al menos el 80% de los boletos.  Los resultados y fotos de los ganadores serán publicados en nuestras Redes @rifasganadoraspc",
     },
     {
       id: 4,

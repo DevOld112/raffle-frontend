@@ -34,12 +34,13 @@ onUpdated(async() => {
     <div class="overflow-x-auto rounded-2xl">
       <table class="w-full min-w-full bg-white  text-left border-collapse shadow-md">
   <thead >
-    <tr class="bg-teal-200 text-gray-700 text-center">
+    <tr class="bg-slate-700 text-center">
       <th class="py-3 px-4 border-b">Documento</th>
       <th class="py-3 px-4 border-b">Nombre</th>
       <th class="py-3 px-4 border-b">Email</th>
       <th class="py-3 px-4 border-b">Teléfono</th>
-      <th class="py-3 px-4 border-b">Dirección</th>
+      <!-- <th class="py-3 px-4 border-b">Dirección</th> -->
+      
       <th class="py-3 px-4 border-b">Cantidad</th>
       <th class="py-3 px-4 border-b">Ref. Pago</th>
       <th class="py-3 px-4 border-b">Acciones</th>

@@ -88,7 +88,7 @@ export type TicketByRaffle = string | string[];
 export type TicketCard = Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' | '_id' | 'status' | 'ticketNumber' >
 export type TicketCreation= Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' >
 export type TicketId = Pick<Ticket, '_id'>
-
+export type TicketNumber =  number[]
 
 export interface RaffleByTicketId {
     _id: string;

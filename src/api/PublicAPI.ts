@@ -30,16 +30,12 @@ export async function getPublicRaffleById(id: RaffleById){
 }
 
 export async function createTicketByRaffle(id: RaffleById, formData: TicketCreation){
-    
     try {
-        
         const url = `/public/${id}/ticket`
-        const { data } = await api.post(url, formData)
-        console.log(data)
+        const  { data } = await api.post(url, formData)
         return data
         
     } catch (error) {
-        console.log(error)
         if(isAxiosError(error) && error.response){
             throw new Error(error.response.data.error)
         }

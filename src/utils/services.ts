@@ -1,9 +1,9 @@
 import { inject } from 'vue';
 import { useRouter } from 'vue-router';
 import { createRaffle, deleteRaffle, updateRaffle } from '@/api/RafflesApi';
-import { acceptTicket, deleteTicket, getAllTicketsByRaffles } from '@/api/TicketsAPI';
+import { acceptTicket, deleteTicket, getAllTicketsByRaffles, updateTicketNumbers } from '@/api/TicketsAPI';
 import { createTicketByRaffle } from '@/api/PublicAPI';
-import type { Toast, RaffleById, RaffleCreation, Ticket, TicketCreation, TicketId, RaffleUpdate } from '@/types';
+import type { Toast, RaffleById, RaffleCreation, Ticket, TicketCreation, TicketId, RaffleUpdate, TicketNumber } from '@/types';
 import Swal from 'sweetalert2';
 import { useRaffleStore } from '@/stores/raffles';
 
@@ -174,26 +174,56 @@ export const raffleServiceHandler = () => {
 
     async function createTicket(id: TicketId, formData: TicketCreation){
         try {
-            const data = await createTicketByRaffle(id, formData)
+            const data  = await createTicketByRaffle(id, formData)
             toast.open({
-                message: 'Peticion Enviada Correctamente',
+                message: data,
                 type: 'success'
             })
 
-            console.log(data)
     
             setTimeout(() => {
                 router.push({name: 'home'})
                 return data;
             }, 1500);
         } catch (error) {
+
             toast.open({
-                message: 'Existe algun campo vacio, por favor revisar',
+                message: 'Error en la solicitud de registro',
                 type: 'error'
             })
         }
     }
 
+    async function updatedTicketNumberService(dataId : DataId, formData:TicketNumber){
+        try {
+            const result = await Swal.fire({
+                title: '¿Deseas Actualizar esta rifa?',
+                text: 'Por favor, verifica que el/los numeros no esten asignados a otra persona',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, aceptar',
+                cancelButtonText: 'Cancelar'
+            });
+    
+            if (result.isConfirmed) {
+                const  data = await updateTicketNumbers(dataId, formData);
+                toast?.open({
+                    message: 'Ticket actualizado con éxito',
+                    type: 'success'
+                });
+                
+            }
+    
+        } catch (error) {
+            console.log(error);
+            toast?.open({
+                message: 'Ocurrió un error al aceptar el ticket',
+                type: 'error'
+            });
+        }
+    }
 
     return {
         createRaffleService,
@@ -201,7 +231,9 @@ export const raffleServiceHandler = () => {
         updateRaffleService,
         acceptTicketService,
         deleteTicketService,
-        createTicket
+        createTicket,
+        updatedTicketNumberService
+        
     }
 
 }

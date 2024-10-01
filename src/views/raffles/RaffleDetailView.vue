@@ -4,7 +4,7 @@ import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import type { RaffleById,  } from '@/types/index';
 import { raffleServiceHandler } from '@/utils/services';
-import { formatDate } from '../../helper/date';
+import {  formatDateOrFallback } from '@/helper/date';
 
 
 
@@ -41,12 +41,7 @@ const updateRaffleButton = async(id: RaffleById) => router.push({name: 'updateRa
 // Boton de Tickets
 const goToTickets = () => router.push({name: 'allTickets'});
 
-function formatDateOrFallback(dateString: string | null | undefined): string {
-    if (!dateString) {
-        return 'Fecha no disponible';
-    }
-    return formatDate(dateString);
-}
+
 
 
 </script>
@@ -86,7 +81,7 @@ function formatDateOrFallback(dateString: string | null | undefined): string {
                 </div>
                 <div class="bg-gray-500 p-4 rounded-lg shadow-md col-span-2">
                     <h3 class="text-lg font-semibold ">Fecha de Finalizacion</h3>
-                    <p class="">{{ store.raffle.endDate }}</p>
+                    <p class="">{{ formatDateOrFallback(store.raffle.endDate) }}</p>
                 </div>
             </div>
             </div>

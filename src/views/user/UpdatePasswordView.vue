@@ -11,9 +11,9 @@ const updatePassword = async () => {
 <template>
     <div class="max-w p-6 bg-gray-600 shadow-md rounded-lg mt-10">
 
-        <h3 class="my-10 font-bold text-2xl">Actualizar Contraseña</h3>
+        <h3 class="my-10 font-bold text-2xl text-center lg:text-left">Actualizar Contraseña</h3>
     
-        <div class="bg-yellow-200 w-full p-2 my-5 rounded-lg flex items-center">
+        <div class="bg-yellow-200 w-full p-2 my-5 rounded-lg lg:flex items-center grid grid-cols-1 place-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 text-yellow-800 mr-3">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
