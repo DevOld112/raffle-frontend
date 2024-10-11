@@ -2,7 +2,8 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { getAllRaffles, getRaffleById } from '@/api/RafflesApi';
 import type { Raffle, RaffleById, Ticket, TicketByRaffle, TicketCard } from '@/types';
-import { getAllTicketsByRaffles, getAllTicketsByRafflesAccepted, updateTicketNumbers } from '@/api/TicketsAPI';
+import type { TicketAPI } from '@/api/TicketsAPI';
+import { getAllTicketsByRaffles, getAllTicketsByRafflesAccepted, updateTicketNumbers, getTicketById } from '@/api/TicketsAPI';
 
 export const useRaffleStore = defineStore('raffles', () => {
     const raffles = ref<Raffle[]>([]);
@@ -23,6 +24,24 @@ export const useRaffleStore = defineStore('raffles', () => {
         phone: ''
     });
     const tickets = ref<Ticket[]>([]);
+    const ticket = ref<Ticket>({
+        _id: '',
+        raffleId: {
+        _id: ''
+        },
+        document: '',
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        quantity: 0,
+        paymentReference: '',
+        status: {
+        PENDING: '',
+        COMPLETED: ''
+        },
+        ticketNumber: []
+      })
 
     const fetchRaffles = async () => {
         try {
@@ -66,17 +85,32 @@ export const useRaffleStore = defineStore('raffles', () => {
         }
     };
 
-  
+    const fetchTicketById = async(id : TicketAPI) => {
+        try {
+            const data = await getTicketById(id);
+            if (data) {
+                ticket.value = data as Ticket ; 
+            } else {
+                console.error("El ticket no se encontró."); 
+            console.log(ticket.value);
+            }
+        } catch (error) {
+            console.error(error); 
+        }
+    }
+
 
 
     return {
         raffle,
         raffles,
+        ticket,
         tickets,
         fetchRaffles,
         fetchRaffle,
         fetchTickets,
         fetchTicketsAccepted,
+        fetchTicketById
 
     };
 });

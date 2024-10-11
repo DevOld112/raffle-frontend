@@ -75,9 +75,15 @@ const router = createRouter({
         {
           path: 'clients',
           name: 'clients',
-          component: () => import('../views/raffles/RafflesClientView.vue')
+          component: () => import('../views/raffles/RafflesClientView.vue'),
         }
       ]
+    },
+    {
+      path: '/raffle/:raffleId/clients/:ticketId',
+      name: 'ticketDetail',
+      component: () => import('../views/tickets/TicketDetailView.vue')
+
     },
     { 
       path: '/public/raffle/:id',

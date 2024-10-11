@@ -23,7 +23,7 @@ onUpdated(() => {
 
 
 const showBackgroundImage = computed(() => {
-  const hiddenRoutes: string[] | string = ['home', 'rafflePublic', 'allTickets', 'proffit', 'clients'];
+  const hiddenRoutes: string[] | string = ['home', 'rafflePublic', 'allTickets', 'proffit', 'clients', 'ticketDetail'];
   return !hiddenRoutes.includes(route.name as string || '');
 });
 </script>

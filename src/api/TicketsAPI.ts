@@ -1,4 +1,4 @@
-import type { Raffle, RaffleById, Ticket, TicketByRaffle, TicketNumber } from "@/types";
+import type { Raffle, RaffleById, Ticket, TicketByRaffle, TicketNumber, TicketWin } from "@/types";
 import api from '../lib/axios'
 import { isAxiosError } from "axios";
 
@@ -12,7 +12,7 @@ export async function getAllTicketsByRaffles(raffleId: TicketByRaffle){
         const rafflePending = []
         const url = `/raffle/${raffleId}/ticket`
         const { data } = await api.get(url)
-        console.log(data)
+        
         
         for(let i = 0; i < data.length; i++){
             if(data[i].status === 'pending'){
@@ -20,8 +20,6 @@ export async function getAllTicketsByRaffles(raffleId: TicketByRaffle){
             }
         }
 
-        console.log(rafflePending)
-        
         return rafflePending;
 
     } catch (error) {
@@ -36,7 +34,6 @@ export async function getAllTicketsByRafflesAccepted(raffleId: TicketByRaffle){
         const rafflePending = []
         const url = `/raffle/${raffleId}/ticket`
         const { data } = await api.get(url)
-        console.log(data)
         
         for(let i = 0; i < data.length; i++){
             if(data[i].status === 'completed'){
@@ -91,6 +88,32 @@ export async function updateTicketNumbers({raffleId, ticketId} : Pick<TicketAPI,
         console.log(error)
         if(isAxiosError(error) && error.response){
             throw new Error(error.response.data.error)
+        }
+    }
+}
+
+export async function getTicketById({raffleId, ticketId}: TicketAPI) : Promise<Ticket | null>{
+    try {
+        const url = `/raffle/${raffleId}/ticket/${ticketId}/detail`
+        const { data } = await api.get<Ticket>(url)
+        console.log(data)
+        return data as Ticket
+    } catch (error) {
+        console.log(error);
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+        return null
+    }
+}
+
+export async function selectTicket(formData : TicketWin){
+    try {
+        console.log(formData)
+    } catch (error) {
+        console.log(error);
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
         }
     }
 }

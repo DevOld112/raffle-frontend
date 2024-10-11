@@ -33,6 +33,10 @@ export const rafflesSchema = z.object({
     accountBank: z.string(),
     binanceID: z.string(),
     phone: z.string(),
+    winners: z.array(z.object({
+        premium: z.string(),
+        ticketNumber: z.number()
+    }))
 })
 
 /** Tickets */
@@ -89,6 +93,7 @@ export type TicketCard = Pick<Ticket, 'document'| 'name' | 'email' | 'paymentRef
 export type TicketCreation= Pick<Ticket, 'document'| 'name' | 'email' | 'paymentReference'| 'quantity' | 'phone' | 'address' >
 export type TicketId = Pick<Ticket, '_id'>
 export type TicketNumber =  number[]
+export type TicketWin = Pick<Raffle, 'winners'>
 
 export interface RaffleByTicketId {
     _id: string;

@@ -41,7 +41,7 @@ onMounted(async () => {
                     <!--<th class="py-3 px-4 border-b">Dirección</th>-->
                     <th class="py-3 px-4 border-b">Cantidad</th>
                     <th class="py-3 px-4 border-b">Numeros Asignados</th>
-                    <th class="py-3 px-4 border-b">Acciones</th>
+                    <th class="py-3 px-16 border-b">Acciones</th>
                 </tr>
             </thead>
             <tbody>

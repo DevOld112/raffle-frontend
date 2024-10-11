@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { defineProps, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { raffleServiceHandler } from '../utils/services';
 import type { TicketCard, RaffleByTicketId, TicketNumber } from '../types/index';
 
+const router = useRouter();
 const route = useRoute();
 const props = defineProps<{ ticket: TicketCard }>();
 const raffleId = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id;
@@ -27,6 +28,16 @@ const handleTicketNumberChange = (newNumber: number, index: number) => {
 const updateTicketNumberHandle = async(dataId: RaffleByTicketId) => { 
   
   await service.updatedTicketNumberService(dataId, editableTicketNumber.value)
+}
+
+const selectTicketWinner = async(dataId: RaffleByTicketId) => {
+    router.push({
+        name: 'ticketDetail',
+        params: {
+            raffleId: dataId.raffleId,
+            ticketId: dataId.ticketId
+        }
+    });
 }
 
 </script>
@@ -57,9 +68,12 @@ const updateTicketNumberHandle = async(dataId: RaffleByTicketId) => {
         />
       </div>
     </td>
-    <td>
+    <td class="space-x-4 ">
       <button @click="updateTicketNumberHandle(dataId)" class="p-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200">
         <i class="fas fa-retweet"></i>
+      </button>
+      <button @click="selectTicketWinner(dataId)" class="p-4 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">
+        <i class="fas fa-arrow-right"></i>
       </button>
     </td>
   </tr>

@@ -1,9 +1,9 @@
 import { inject } from 'vue';
 import { useRouter } from 'vue-router';
 import { createRaffle, deleteRaffle, updateRaffle } from '@/api/RafflesApi';
-import { acceptTicket, deleteTicket, getAllTicketsByRaffles, updateTicketNumbers } from '@/api/TicketsAPI';
+import { acceptTicket, deleteTicket, getAllTicketsByRaffles, updateTicketNumbers, selectTicket } from '@/api/TicketsAPI';
 import { createTicketByRaffle } from '@/api/PublicAPI';
-import type { Toast, RaffleById, RaffleCreation, Ticket, TicketCreation, TicketId, RaffleUpdate, TicketNumber } from '@/types';
+import type { Toast, RaffleById, RaffleCreation, Ticket, TicketCreation, TicketId, RaffleUpdate, TicketNumber, TicketWin } from '@/types';
 import Swal from 'sweetalert2';
 import { useRaffleStore } from '@/stores/raffles';
 
@@ -225,6 +225,37 @@ export const raffleServiceHandler = () => {
         }
     }
 
+    async function selectTicketWinner(formData: TicketWin){
+        try {
+            const result = await Swal.fire({
+                title: '¿Deseas Seleccionar este numero como ganador del sorteo?',
+                text: 'Por favor, verifica el numero, esta accion no se puede revertir',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, aceptar',
+                cancelButtonText: 'Cancelar'
+            });
+    
+            if (result.isConfirmed) {
+                const  data = await selectTicket(formData);
+                toast?.open({
+                    message: 'Ticket actualizado con éxito',
+                    type: 'success'
+                });
+                
+            }
+    
+        } catch (error) {
+            console.log(error);
+            toast?.open({
+                message: 'Ocurrió un error al seleccionar el ticket',
+                type: 'error'
+            });
+        }
+    }
+
     return {
         createRaffleService,
         deleteRaffleService,
@@ -232,7 +263,8 @@ export const raffleServiceHandler = () => {
         acceptTicketService,
         deleteTicketService,
         createTicket,
-        updatedTicketNumberService
+        updatedTicketNumberService,
+        selectTicketWinner
         
     }
 
